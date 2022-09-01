@@ -5,11 +5,7 @@ import ModalFav from "./components/ModalInfo/ModalInfo";
 Modal.setAppElement("#root");
 
 function App() {
-  return (
-    <div className="App">
-      <ModalFav />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
