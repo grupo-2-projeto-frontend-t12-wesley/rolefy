@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
  * {
     margin:0;
     padding: 0;
@@ -22,8 +20,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
-=======
 .App{
   display: flex;
   flex-direction: column;
@@ -63,5 +61,5 @@ body{
   .botaoLogin{
     width: 20vw;
   }
->>>>>>> 9c6d4b4c0af2a3b67f470a14b894df78aa0672fc
+
 }

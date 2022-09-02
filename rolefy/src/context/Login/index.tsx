@@ -1,7 +1,11 @@
 import { createContext, ReactNode } from "react";
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
+import axios from "axios";
+/* import api from "../../services/api"; */
+
+
 
 interface LoginProviderProps {
   children: ReactNode;
@@ -18,8 +22,8 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
-    await api
-      .post("/login", data)
+    await axios
+      .post("https://rolefy.herokuapp.com/login", data)
       .then((res) => {
         const { accessToken } = res.data;
         const { id } = res.data.user;
@@ -27,8 +31,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         localStorage.setItem("@idUser", JSON.stringify(id));
         navigate("/isLoged");
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err));}
   return (
     <LoginContext.Provider value={{ onSubmitLogin }}>
       {children}

@@ -17,9 +17,9 @@ function Login() {
   });
   const { onSubmitLogin } = useContext(LoginContext);
   useEffect(() => {
-    if (localStorage.getItem("@token")) {
+    /* if (localStorage.getItem("@token")) {
       navigate("/isLoged");
-    }
+    } */
   }, []);
   return (
     <div className="App">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+/* import { useEffect, useState } from 'react';
 import ImageHeart from '../../assets/svgFiles/Group.svg'
 import api from '../../services/api';
 
@@ -45,7 +45,7 @@ function HeartFavorite(){
 
     function saveNewPlaces() {
         const newPlace : IPlace[] = {
-            /* Pegar o objeto com as informações renderizadas */
+            
         }
 
         setFavePlaces([...favPlaces, newPlace])
@@ -72,4 +72,4 @@ function HeartFavorite(){
     )
 }
 
-export default HeartFavorite;
+export default HeartFavorite; */

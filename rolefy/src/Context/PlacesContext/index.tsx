@@ -3,31 +3,35 @@ import toast from 'react-hot-toast';
 import api from '../../services/api';
 import { IGetPlacesResponse, GetPlaces } from '../../services/GetPlaces'
 
-interface IPlaceProps{
+ interface IPlaceProps{
     children: ReactNode;
 }
 
 export interface IPlace{
-    name: string;
-    city: string;
-    cep: string;
-    district: string;
-    foods: string[];
-    musics: string[];
-    avaliation: number;
-    userId: number; 
+    accessToken: string;
+	user: {
+		email: string;
+        name: string;
+        cep: string;
+        musics: string[];
+        foods: string[];
+        image: string;
+        favourites: string[];
+        id: number;
+       
+    }
 }
 
 
-
+ 
 export interface IPlaceContext{
     places: IPlace[] | IGetPlacesResponse[];
     setPlaces: React.Dispatch<React.SetStateAction<IGetPlacesResponse[]>>;
    
       
-};
+}; 
 
-export const PlacesContext = createContext<IPlaceContext>({} as IPlaceContext);
+ export const PlacesContext = createContext<IPlaceContext>({} as IPlaceContext); 
 
 function PlacesProvider({children} : IPlaceProps) {
 
@@ -36,8 +40,8 @@ function PlacesProvider({children} : IPlaceProps) {
     useEffect(() => {
         GetPlaces()
         .then((response : IGetPlacesResponse) => {
-            console.log(response)
-            setPlaces([response])
+            console.log(response.user.favourites)
+            setPlaces([...places, response])
             
         })
         .catch((error) => {
@@ -45,13 +49,13 @@ function PlacesProvider({children} : IPlaceProps) {
             console.error(error)})
     }, [])
 
-    function saveFavPlace(data: IGetPlacesResponse) {
-        if(!data.avaliation) return
+   /*  function saveFavPlace(data: IGetPlacesResponse) {
+        if(!data.accessToken) return
 
         const newFavPlace = {
             
         }
-    }
+    } */
 
 
     return(
@@ -62,4 +66,4 @@ function PlacesProvider({children} : IPlaceProps) {
 
 }
 
-export default PlacesProvider;
+export default PlacesProvider; 

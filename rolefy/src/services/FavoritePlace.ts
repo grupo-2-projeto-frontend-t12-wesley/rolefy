@@ -1,4 +1,4 @@
- import api from './api';
+/*  import api from './api';
 
 
 export interface IFavPlaces{
@@ -23,3 +23,4 @@ export interface IGetUserResponse {
 }
 
 
+ */
