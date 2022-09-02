@@ -1,7 +1,7 @@
-import axios from "axios";
 import { createContext, ReactNode } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
 
 interface LoginProviderProps {
   children: ReactNode;
@@ -18,8 +18,8 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
-    await axios
-      .post("https://rolefy.herokuapp.com/login", data)
+    await api
+      .post("/login", data)
       .then((res) => {
         const { accessToken } = res.data;
         const { id } = res.data.user;
