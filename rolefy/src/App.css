@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
  * {
     margin:0;
@@ -22,4 +23,45 @@ body{
     flex-direction: column;
     align-items: center;
 
+=======
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formularioLogin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.emailInput{
+  width: 65vw;
+}
+
+.senhaInput{
+  width: 65vw;
+}
+
+.botaoLogin{
+  width: 65vw;
+}
+
+@media (min-width: 720px) {
+  .emailInput{
+    width: 20vw;
+  }
+  
+  .senhaInput{
+    width: 20vw;
+  }
+  
+  .botaoLogin{
+    width: 20vw;
+  }
+>>>>>>> 9c6d4b4c0af2a3b67f470a14b894df78aa0672fc
 }

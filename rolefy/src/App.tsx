@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 //import './App.css';
 
@@ -21,3 +22,12 @@ function App() {
 }
 
 export default App
+=======
+import "./App.css";
+import RoutsMap from "./routes/routes";
+
+function App() {
+  return <RoutsMap />;
+}
+export default App; 
+>>>>>>> 9c6d4b4c0af2a3b67f470a14b894df78aa0672fc

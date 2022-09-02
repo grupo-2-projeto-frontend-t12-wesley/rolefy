@@ -9,14 +9,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@hookform/resolvers": "^2.9.7",
+>>>>>>> 9c6d4b4c0af2a3b67f470a14b894df78aa0672fc
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",
+<<<<<<< HEAD
     "react-hot-toast": "^2.3.0",
     "react-router-dom": "^6.3.0",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.5",
+=======
+    "react-router-dom": "^6.3.0",
+>>>>>>> 9c6d4b4c0af2a3b67f470a14b894df78aa0672fc
     "yup": "^0.32.11"
   },
   "devDependencies": {
