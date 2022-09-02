@@ -18,6 +18,8 @@ export interface IPlace{
     userId: number; 
 }
 
+
+
 export interface IPlaceContext{
     places: IPlace[] | IGetPlacesResponse[];
     setPlaces: React.Dispatch<React.SetStateAction<IGetPlacesResponse[]>>;
@@ -34,6 +36,7 @@ function PlacesProvider({children} : IPlaceProps) {
     useEffect(() => {
         GetPlaces()
         .then((response : IGetPlacesResponse) => {
+            console.log(response)
             setPlaces([response])
             
         })

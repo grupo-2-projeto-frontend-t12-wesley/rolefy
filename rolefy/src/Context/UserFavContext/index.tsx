@@ -1,12 +1,17 @@
- import api from './api';
+import { createContext, useEffect, useState, ReactNode } from 'react';
+import toast from 'react-hot-toast';
+import api from '../../services/api';
 
 
-export interface IFavPlaces{
-
+interface IUserProps{
+    children: ReactNode;
 }
 
-export interface IGetUserResponse {
-	
+
+
+
+
+export interface IUser{
     accessToken: string;
 	user: {
 		email: string;
@@ -19,7 +24,4 @@ export interface IGetUserResponse {
         id: number;
        
     }
-    
 }
-
-

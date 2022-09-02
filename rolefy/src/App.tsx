@@ -14,7 +14,7 @@ function App() {
   <>
     <BarraUser/>
     <Favoritos/>
-    <HeartFavorite/>
+   
 
   </>
 )
