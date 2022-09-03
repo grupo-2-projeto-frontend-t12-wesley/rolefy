@@ -25,8 +25,8 @@ export interface IPlace{
 
  
 export interface IPlaceContext{
-    places: IPlace[] | IGetPlacesResponse[];
-    setPlaces: React.Dispatch<React.SetStateAction<IGetPlacesResponse[]>>;
+    favPlaces: IPlace[] | IGetPlacesResponse[];
+    setFavPlaces: React.Dispatch<React.SetStateAction<IPlace[]>>;
    
       
 }; 
@@ -35,13 +35,13 @@ export interface IPlaceContext{
 
 function PlacesProvider({children} : IPlaceProps) {
 
-    const [places, setPlaces] = useState<IGetPlacesResponse[]>([]);
+    const [favPlaces, setFavPlaces] = useState<IGetPlacesResponse[]>([]);
 
     useEffect(() => {
         GetPlaces()
         .then((response : IGetPlacesResponse) => {
-            console.log(response.user.favourites)
-            setPlaces([...places, response])
+            
+            setFavPlaces([...favPlaces, response])
             
         })
         .catch((error) => {
@@ -59,7 +59,7 @@ function PlacesProvider({children} : IPlaceProps) {
 
 
     return(
-     <PlacesContext.Provider value={{ places, setPlaces,  }} >
+     <PlacesContext.Provider value={ favPlaces  } >
         {children}
      </PlacesContext.Provider>   
     )

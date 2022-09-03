@@ -1,4 +1,4 @@
-/* import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ImageHeart from '../../assets/svgFiles/Group.svg'
 import api from '../../services/api';
 
@@ -42,7 +42,7 @@ interface IFavPlace {
 
 function HeartFavorite(){
     const [favPlaces, setFavePlaces] = useState<IPlace[]>([])
-
+    
     function saveNewPlaces() {
         const newPlace : IPlace[] = {
             
@@ -72,4 +72,4 @@ function HeartFavorite(){
     )
 }
 
-export default HeartFavorite; */
+export default HeartFavorite;

@@ -22,8 +22,8 @@ export interface IGetPlacesResponse {
 }
 
  export async function GetPlaces(): Promise<IGetPlacesResponse> {
+     const id = localStorage.getItem('@idUser')
     const token = localStorage.getItem("@token")
-    const id = localStorage.getItem('@idUser')
     api.defaults.headers.common.authorization = `Bearer ${token}`;
     const { data } = await api.get<IGetPlacesResponse>(`users/${id}`);
     return data;

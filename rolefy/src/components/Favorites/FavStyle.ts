@@ -23,6 +23,10 @@ export const CardPlaces = styled.li`
     align-items: center;
     justify-content: space-evenly;
 
+    img{
+        width: 50px;
+    }
+
 `;
 
 export const SuportInsideCard = styled.div`
