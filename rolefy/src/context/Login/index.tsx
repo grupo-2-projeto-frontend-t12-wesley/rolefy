@@ -27,13 +27,15 @@ type AxiosRes = iPlaces[];
 interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
+  favPlaces: AxiosRes; 
 }
 
 export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([] as AxiosRes);
-  console.log(places);
+  const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
+  
 
   useEffect(() => {
     api.get<AxiosRes>("/places").then((response) => {
@@ -47,14 +49,19 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       .then((res) => {
         const { accessToken } = res.data;
         const { id } = res.data.user;
-        localStorage.setItem("@token", JSON.stringify(accessToken));
-        localStorage.setItem("@idUser", JSON.stringify(id));
+        const { favourites } = res.data.user;
+        
+        localStorage.setItem("@token", accessToken);
+        localStorage.setItem("@idUser", id);
+        setFavPlaces(favourites);
         navigate("/isLoged");
       })
       .catch((err) => console.log(err));
   };
+
+  console.log(places, favPlaces);
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places }}>
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces }}>
       {children}
     </LoginContext.Provider>
   );
