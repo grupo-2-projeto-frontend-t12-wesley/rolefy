@@ -9,22 +9,30 @@ import { LoginProvider, LoginContext,  } from "../../context/Login";
 
 
 function ShowFavorites() {
-    const { places } = useContext(LoginContext)
+    const { places, favPlaces } = useContext(LoginContext)
    
-    
+    const placesFiltered = places.filter((elem, index, arr) => {
+        const indice = arr.findIndex((innerElem) =>{
+            return elem.id === innerElem.id
+        })
+        return index === indice
+    })
+   
+    const matchId = placesFiltered.filter((elem, i) => elem.id === favPlaces[i].id)
+    console.log(matchId)
 
 return(
     <ContainerCardPlace>
         {  
-            places.length > 0 ?
-            places.map((place) => (
-                <CardPlaces key={place.id}>
+            placesFiltered.length > 0 ?
+            placesFiltered.map((placeFiltered) => (
+                <CardPlaces key={placeFiltered.id}>
                     <figure>
-                        <img src={place.image} alt="bar" />
+                        <img src={placeFiltered.image} alt="bar" />
                     </figure>
                     <SuportInsideCard>
-                        <BusinessName>{place.name}</BusinessName>
-                        <FakeStars>{place.avaliation} Estrelas</FakeStars>
+                        <BusinessName>{placeFiltered.name}</BusinessName>
+                        <FakeStars>{placeFiltered.avaliation} Estrelas</FakeStars>
                     </SuportInsideCard>
                 </CardPlaces>
             )) : 

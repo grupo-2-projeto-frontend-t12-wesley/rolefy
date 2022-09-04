@@ -58,8 +58,8 @@ function ButtonBusiness(){
             <div className={isInfo ? 'infoOn' : 'infoOff'}></div> */}
             {isImage &&  <ModalImage />}
             {isRate && <ModalRate />}
-            {isInfo && <ModalInfo/>}
-
+            {isInfo && <ModalInfo />}
+ 
         </ContainerMain>
     )
 }
