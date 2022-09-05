@@ -6,10 +6,10 @@ import Modal from "react-modal";
 import type * as CSS from "csstype";
 import { useState } from "react";
 import { ImageList, ImageListItem } from "@mui/material";
-import { LoginProvider, LoginContext } from "../../../context/Login";
-import { MdlRate } from "./rateStyle";
+import { LoginProvider, LoginContext,  } from "../../../context/Login";
+import { ImgPlace } from "./imageStyle";
 
-interface ModalRate {
+interface ModalImg {
   subtitle: string;
   style: CSS.Properties;
 }
@@ -30,10 +30,10 @@ const customStyles = {
   } as CSS.Properties,
 };
 
-function ModalRate() {
-  const { places, favPlaces } = useContext(LoginContext);
+function ModalImg() {
+  const { places, favPlaces } = useContext(LoginContext)
 
-  let subtitle: ModalRate;
+  let subtitle: ModalImg;
   const [modalIsOpen, setIsOpen] = useState(true);
   const [value, setValue] = useState<number | null>(2);
   const [comment, setComment] = useState<string>();
@@ -57,18 +57,39 @@ function ModalRate() {
     setIsOpen(false);
   }
 
+
+
+  
+
   return (
     <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        
-      </Modal>
+      
+
+
+<Modal
+isOpen={modalIsOpen}
+onAfterOpen={afterOpenModal}
+onRequestClose={closeModal}
+style={customStyles}
+>
+    <ImageList sx={{ width: 300, height: 350 }} cols={1} rowHeight={82}>
+      {places.map((place) => (
+        <ImageListItem key={place.id}>
+          <ImgPlace
+            src={`${place.image}?w=164&h=164&fit=crop&auto=format`}
+            srcSet={`${place.image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+            alt={place.name}
+            loading="lazy"
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+
+</Modal>
     </div>
   );
 }
 
-export default ModalRate;
+export default ModalImg;
+
+

@@ -28,6 +28,12 @@ interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
   favPlaces: AxiosRes; 
+  userPlace: AxiosRes; 
+}
+
+interface IuserInfo {
+  name: string;
+  image: string;
 }
 
 export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
@@ -35,6 +41,9 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
+  const [userPlace, setUserPlace] = useState([] as AxiosRes);
+  
+  const idUser = localStorage.getItem('@idUser')
   
 
   useEffect(() => {
@@ -43,25 +52,42 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     });
   }, []);
 
+
+
+  useEffect(() => {
+    api.get<AxiosRes>(`/places/${idUser}`).then((response) => {
+      setUserPlace(response.data);
+    });
+  }, []);
+
+  console.log(userPlace);
+
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
       .post("/login", data)
       .then((res) => {
         const { accessToken } = res.data;
-        const { id } = res.data.user;
+        const { id, image, name } = res.data.user;
         const { favourites } = res.data.user;
-        
+
         localStorage.setItem("@token", accessToken);
         localStorage.setItem("@idUser", id);
+
+        // console.log(res);
+        // console.log(res.data.user.image);
+
+        const userInfo: IuserInfo = { name, image };
+
+        localStorage.setItem("@userInfo", JSON.stringify(userInfo));
+
         setFavPlaces(favourites);
         navigate("/isLoged");
       })
       .catch((err) => console.log(err));
   };
 
-  console.log(places, favPlaces);
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces }}>
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, userPlace }}>
       {children}
     </LoginContext.Provider>
   );
