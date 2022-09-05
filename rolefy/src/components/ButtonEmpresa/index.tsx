@@ -1,6 +1,7 @@
 import { useState } from "react"
-import ModalImage from "../Modals/ModalImage";
-import ModalInfo from "../Modals/ModalInfo";
+import ModalImg from "../Modals/ModalImg";
+import ModalImage from "../Modals/ModalImg";
+//import ModalInfo from "../Modals/ModalInfo";
 import ModalRate from "../Modals/ModalRate";
 import { ContainerMain } from "./BtnEmpresaStyle";
 
@@ -56,7 +57,7 @@ function ButtonBusiness(){
             {/* <div className={isImage ? 'imagensOn' : 'imagensOff'}></div>
             <div className={isRate ? 'rateOn' : 'rateOff'}></div>
             <div className={isInfo ? 'infoOn' : 'infoOff'}></div> */}
-            {isImage &&  <ModalImage />}
+            {isImage &&  <ModalImg />}
             {isRate && <ModalRate />}
             {isInfo && <ModalInfo />}
  

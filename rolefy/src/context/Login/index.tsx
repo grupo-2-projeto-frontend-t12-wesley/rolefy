@@ -28,6 +28,7 @@ interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
   favPlaces: AxiosRes; 
+  userPlace: AxiosRes; 
 }
 
 export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
@@ -35,6 +36,8 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
+  const [userPlace, setUserPlace] = useState([] as AxiosRes);
+  const idUser = localStorage.getItem('@idUser')
   
 
   useEffect(() => {
@@ -42,6 +45,16 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       setPlaces(response.data);
     });
   }, []);
+
+
+
+  useEffect(() => {
+    api.get<AxiosRes>(`/places/${idUser}`).then((response) => {
+      setUserPlace(response.data);
+    });
+  }, []);
+
+  console.log(userPlace);
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api

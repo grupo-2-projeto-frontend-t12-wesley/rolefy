@@ -5,6 +5,7 @@ import { PlacesContext  } from "../../Context/PlacesContext";
 import ImagePlace from '../../assets/sample1.png'
 import { CardPlaces, SuportInsideCard, BusinessName, FakeStars, ContainerCardPlace } from "./FavStyle";
 import { LoginProvider, LoginContext,  } from "../../context/Login";
+import ModalFav from "../LibModal/ModalInfo";
 
 
 
@@ -12,7 +13,7 @@ function ShowFavorites() {
     const { places, favPlaces } = useContext(LoginContext)
    
     const placesFiltered = places.filter((elem, index, arr) => {
-        const indice = arr.findIndex((innerElem) =>{
+        const indice = arr.findIndex((innerElem) => {
             return elem.id === innerElem.id
         })
         return index === indice
@@ -32,6 +33,7 @@ return(
                     </figure>
                     <SuportInsideCard>
                         <BusinessName>{placeFiltered.name}</BusinessName>
+                        <ModalFav/>
                         <FakeStars>{placeFiltered.avaliation} Estrelas</FakeStars>
                     </SuportInsideCard>
                 </CardPlaces>
