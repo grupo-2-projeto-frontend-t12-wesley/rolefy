@@ -42,6 +42,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
   const [userPlace, setUserPlace] = useState([] as AxiosRes);
+  
   const idUser = localStorage.getItem('@idUser')
   
 
@@ -86,7 +87,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   };
 
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces }}>
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, userPlace }}>
       {children}
     </LoginContext.Provider>
   );
