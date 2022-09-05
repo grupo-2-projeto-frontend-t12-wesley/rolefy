@@ -23,6 +23,12 @@ export const ContainerMain = styled.div`
         border: #2B272D;
         color: #FFFF;
     }
+    
+    .BtnImg:hover, .BtnRate:hover, .BtnInfo:hover{
+        background-color: #2B272D;
+        border: #2B272D;
+        color: #FFFF;
+    }
 
     .BtnImg{
         border-radius: 15.682rem 0rem 0rem 15.682rem;

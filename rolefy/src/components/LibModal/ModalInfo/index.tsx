@@ -52,6 +52,10 @@ function ModalFav() {
     setIsOpen(false);
   }
 
+
+
+  
+
   return (
     <div>
       <button onClick={openModal} className="btnOpen">
