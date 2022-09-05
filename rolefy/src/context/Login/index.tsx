@@ -31,6 +31,11 @@ interface ILoginContext {
   userPlace: AxiosRes; 
 }
 
+interface IuserInfo {
+  name: string;
+  image: string;
+}
+
 export const LoginContext = createContext<ILoginContext>({} as ILoginContext);
 export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
@@ -61,18 +66,25 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       .post("/login", data)
       .then((res) => {
         const { accessToken } = res.data;
-        const { id } = res.data.user;
+        const { id, image, name } = res.data.user;
         const { favourites } = res.data.user;
-        
+
         localStorage.setItem("@token", accessToken);
         localStorage.setItem("@idUser", id);
+
+        // console.log(res);
+        // console.log(res.data.user.image);
+
+        const userInfo: IuserInfo = { name, image };
+
+        localStorage.setItem("@userInfo", JSON.stringify(userInfo));
+
         setFavPlaces(favourites);
         navigate("/isLoged");
       })
       .catch((err) => console.log(err));
   };
 
-  console.log(places, favPlaces);
   return (
     <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces }}>
       {children}
