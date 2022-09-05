@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PlacesContext } from "../../Context/PlacesContext";
+
 
 import ImagePlace from "../../assets/sample1.png";
 import {

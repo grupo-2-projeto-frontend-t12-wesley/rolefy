@@ -1,20 +1,3 @@
-/* import { Background, MdlImage } from "./imageStyle";
-
-
-
-
-function ModalImage() {
-    return(
-        <Background>
-            <MdlImage>
-                <span>imagem</span>
-                <span>imagem</span>
-            </MdlImage>
-        </Background>
-    )
-}
-
-export default ModalImage; */
 import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
@@ -80,55 +63,7 @@ function ModalImg() {
 
   return (
     <div>
-      {/* <button onClick={openModal} className="btnOpen">
-        Adicionar comentário
-      </button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <Box
-          sx={{
-            "& > legend": { mt: 3 },
-            backgroundColor: "#534E4E",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "1em",
-            width: 300,
-            height: 300,
-          }}
-        >
-          <Typography
-            component="legend"
-            className="modalAvaliation-title"
-            sx={{
-              color: "#fff",
-            }}
-          >
-            Avalie o local do seu rolê:
-          </Typography>
-          <Rating
-            name="simple-controlled"
-            value={value}
-            onChange={(event, newValue) => {
-              event.preventDefault;
-              setValue(newValue);
-            }}
-          />
-          <textarea
-            placeholder="Adicione um Comentário"
-            onChange={(e) => {
-              e.preventDefault();
-              const newComment: string = e.target.value;
-              setComment(newComment);
-            }}
-          />
-          <button onClick={newAvaliation}>Enviar Avaliação</button>
-        </Box>
-      </Modal> */}
+      
 
 
 <Modal
