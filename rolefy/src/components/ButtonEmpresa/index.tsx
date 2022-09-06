@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ModalImg from "../Modals/ModalImg";
 import ModalImage from "../Modals/ModalImg";
+import ModalInfo from "../Modals/ModalInfo";
 
 import ModalRate from "../Modals/ModalRate";
 import { ContainerMain } from "./BtnEmpresaStyle";
@@ -57,6 +58,7 @@ function ButtonBusiness() {
 
       {isImage && <ModalImg />}
       {isRate && <ModalRate />}
+      {isInfo && <ModalInfo />}
     </ContainerMain>
   );
 }

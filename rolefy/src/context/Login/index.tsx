@@ -11,7 +11,7 @@ export interface OnSubmitLoginProps {
   email: string;
   password: string;
 }
-interface iPlaces {
+export interface iPlaces {
   name: string;
   city: string;
   cep: string;
@@ -29,6 +29,7 @@ interface ILoginContext {
   places: AxiosRes;
   favPlaces: AxiosRes; 
   userPlace: AxiosRes; 
+  setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>> 
 }
 
 interface IuserInfo {
@@ -87,7 +88,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   };
 
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, userPlace }}>
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, userPlace, setFavPlaces }}>
       {children}
     </LoginContext.Provider>
   );

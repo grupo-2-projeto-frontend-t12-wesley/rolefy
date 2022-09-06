@@ -8,6 +8,7 @@ import { useState } from "react";
 import { ImageList, ImageListItem } from "@mui/material";
 import { LoginProvider, LoginContext } from "../../../context/Login";
 import { MdlRate } from "./rateStyle";
+import { Img, CardRate, StarRate, Commentary } from "./rateStyle";
 
 interface ModalRate {
   subtitle: string;
@@ -27,6 +28,8 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "0",
+    background: 'transparent',
+    border: 'none',
   } as CSS.Properties,
 };
 
@@ -65,7 +68,32 @@ function ModalRate() {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        
+        <Box
+        sx={{
+          "& > legend": { mt: 3 },
+          backgroundColor: 'transparent',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1em",
+          width: 300,
+          height: 300,
+        }}
+        >
+          <h1>Teste</h1>
+          {places.length > 0 ? (
+            places.map((place) => (
+              <CardRate key={place.id}>
+              <StarRate>&#11088;&#11088;&#11088;&#11088;&#11088;</StarRate>
+              <Commentary>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.</Commentary>
+            </CardRate>
+            ))
+          ) : (
+            <div>nenhum resultado encontrado</div>
+          )}
+          ;
+        </Box>
       </Modal>
     </div>
   );

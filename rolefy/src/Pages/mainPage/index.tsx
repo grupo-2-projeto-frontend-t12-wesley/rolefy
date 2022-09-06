@@ -5,6 +5,9 @@ import { LoginContext } from "../../context/Login";
 import { Conteiner } from "./styled";
 
 import { IoChatbubbles } from "react-icons/io5";
+import ShowFavorites from "../../components/Favorites";
+import MenuBusiness from "../../components/MenuBusiness";
+import ButtonBusiness from "../../components/ButtonEmpresa";
 function MainPage() {
   const { places } = useContext(LoginContext);
 
@@ -13,9 +16,7 @@ function MainPage() {
   const navigate = useNavigate();
 
   const userId = window.localStorage.getItem("@idUser");
-
-  return (
-    <Conteiner>
+   <Conteiner>
       <Slider>
         {places.map((resp, index) => (
           <li className="keen-slider__slide " key={index}>
@@ -30,8 +31,16 @@ function MainPage() {
           <IoChatbubbles />
         </button>
       </nav>
-    </Conteiner>
-  );
+    </Conteiner> 
+
+
+  /* return (
+    
+    <>
+    <MenuBusiness/>
+    <ButtonBusiness />
+    </>
+  ); */
 }
 
 export default MainPage;
