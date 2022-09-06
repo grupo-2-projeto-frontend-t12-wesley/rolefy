@@ -5,6 +5,8 @@ import { Conteiner } from "./styled";
 
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { LoginContext } from "../../context/Login";
+import ButtonNav from "../../components/ButtonNav";
+import { Header } from "../../components/BarraUser/BarUserStyle";
 
 export interface IMessage {
   message: string;
@@ -79,10 +81,8 @@ function Chat() {
 
   return (
     <Conteiner>
+      {/* Falar com thiago sobre o <Header/> */}
       <button onClick={() => history.back()}>Voltar</button>
-
-      <h1>Chat</h1>
-
       <div className="chat">
         {data?.map((resp: IMessage, index) => {
           if (resp.userId == userId) {
@@ -118,6 +118,7 @@ function Chat() {
         />
         <button>Enviar</button>
       </form>
+      <ButtonNav />
     </Conteiner>
   );
 }

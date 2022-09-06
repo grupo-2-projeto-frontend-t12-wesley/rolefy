@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import React from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import { string } from "yup/lib/locale";
+
 
 interface LoginProviderProps {
   children: ReactNode;
@@ -70,21 +70,19 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         const { accessToken } = res.data;
         const { id, image, name } = res.data.user;
         const { favourites } = res.data.user;
-
         localStorage.setItem("@token", accessToken);
-        localStorage.setItem("@idUser", id);
-
-        // console.log(res);
-        // console.log(res.data.user.image);
-
+        localStorage.setItem("@idUser", id)
+        
         const userInfo: IuserInfo = { name, image };
 
         localStorage.setItem("@userInfo", JSON.stringify(userInfo));
 
         setFavPlaces(favourites);
+        
+        toast.success('Sucesso!!!')
         navigate("/isLoged");
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>  toast.error("Erro!!!"));
   };
 
   return (
