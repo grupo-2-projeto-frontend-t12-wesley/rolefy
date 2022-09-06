@@ -25,17 +25,19 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    display: "flex",
+    flexDirection: "column",
+    height: "300px",
+    width: "300px",
     transform: "translate(-50%, -50%)",
     padding: "0",
   } as CSS.Properties,
 };
 
 function ModalRate() {
-  const { places, favPlaces } = useContext(LoginContext);
-
   let subtitle: ModalRate;
-  const [modalIsOpen, setIsOpen] = useState(true);
-  const [value, setValue] = useState<number | null>(2);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState<number | null>(0);
   const [comment, setComment] = useState<string>();
   const [avaliation, setAvaliation] = useState<iAvaliation>();
 
@@ -59,14 +61,25 @@ function ModalRate() {
 
   return (
     <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        
-      </Modal>
+      <div>
+        <button onClick={openModal}>Add comentário</button>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />
+          <textarea />
+        </Modal>
+      </div>
     </div>
   );
 }

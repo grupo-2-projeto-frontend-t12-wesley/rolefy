@@ -1,5 +1,5 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
+import ShowFavorites from "../components/Favorites";
 import Chat from "../Pages/chat";
 import ChatCompany from "../Pages/chatCompany";
 import Login from "../Pages/Login";
@@ -16,6 +16,7 @@ function RoutsMap() {
       <Route path="/message" element={<Message />} />
       <Route path="/chat/:id" element={<Chat />} />
       <Route path="/chatCompany/:id" element={<ChatCompany />} />
+      <Route path="/favourites" element={<ShowFavorites />} />
     </Routes>
   );
 }

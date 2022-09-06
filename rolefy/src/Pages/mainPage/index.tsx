@@ -20,6 +20,7 @@ function MainPage() {
         {places.map((resp, index) => (
           <li className="keen-slider__slide " key={index}>
             <h1>{resp.name}</h1>
+            <img src={resp.image} />
             <button onClick={() => navigate(`/chat/${resp.id}`)}>Chat</button>
           </li>
         ))}

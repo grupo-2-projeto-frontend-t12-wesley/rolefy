@@ -1,7 +1,5 @@
-import { useContext } from "react";
-
-
-import ImagePlace from "../../assets/sample1.png";
+import { Children, useContext, useState } from "react";
+import Rating from "@mui/material/Rating";
 import {
   CardPlaces,
   SuportInsideCard,
@@ -9,15 +7,17 @@ import {
   FakeStars,
   ContainerCardPlace,
 } from "./FavStyle";
-import { LoginProvider, LoginContext } from "../../context/Login";
+import { LoginContext } from "../../context/Login";
+import ModalFav from "../LibModal/ModalInfo";
+import SendAvaliation from "../ButtonAvaliation";
 
 function ShowFavorites() {
   const { places, favPlaces } = useContext(LoginContext);
-
   const placesFiltered = places.filter((elem, index, arr) => {
     const indice = arr.findIndex((innerElem) => {
       return elem.id === innerElem.id;
     });
+
     return index === indice;
   });
 
@@ -31,7 +31,19 @@ function ShowFavorites() {
             </figure>
             <SuportInsideCard>
               <BusinessName>{placeFiltered.name}</BusinessName>
-              <FakeStars>{placeFiltered.avaliation} Estrelas</FakeStars>
+              <FakeStars>
+                <Rating
+                  name="read-only"
+                  value={placeFiltered.avaliation}
+                  readOnly
+                />
+              </FakeStars>
+              <ModalFav>
+                <SendAvaliation
+                  id={placeFiltered.id}
+                  star={placeFiltered.avaliation}
+                />
+              </ModalFav>
             </SuportInsideCard>
           </CardPlaces>
         ))

@@ -11,4 +11,8 @@ export const Conteiner = styled.div`
     border: 0px;
     background-color: transparent;
   }
+  img {
+    width: 100vw;
+    height: 80vh;
+  }
 `;

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { ReactNode, useContext } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Modal from "react-modal";
 import type * as CSS from "csstype";
 import { useState } from "react";
+import api from "../../../services/api";
+import { number } from "yup";
+import { LoginContext } from "../../../context/Login";
 
 interface iModalFav {
   subtitle: string;
@@ -14,6 +17,7 @@ interface iModalFav {
 interface iAvaliation {
   stars?: number | null;
   comments?: string;
+  children: ReactNode;
 }
 const customStyles = {
   content: {
@@ -27,19 +31,14 @@ const customStyles = {
   } as CSS.Properties,
 };
 
-function ModalFav() {
+function ModalFav({ children }: iAvaliation) {
   let subtitle: iModalFav;
+  const { value, setValue } = useContext(LoginContext);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState<number | null>(2);
+
   const [comment, setComment] = useState<string>();
   const [avaliation, setAvaliation] = useState<iAvaliation>();
 
-  function newAvaliation() {
-    setAvaliation({
-      stars: value,
-      comments: comment,
-    });
-  }
   function openModal() {
     setIsOpen(true);
   }
@@ -51,10 +50,6 @@ function ModalFav() {
   function closeModal() {
     setIsOpen(false);
   }
-
-
-
-  
 
   return (
     <div>
@@ -104,8 +99,8 @@ function ModalFav() {
               setComment(newComment);
             }}
           />
-          <button onClick={newAvaliation}>Enviar Avaliação</button>
         </Box>
+        {children}
       </Modal>
     </div>
   );

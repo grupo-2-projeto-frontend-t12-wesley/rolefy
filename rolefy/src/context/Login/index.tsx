@@ -18,7 +18,7 @@ interface iPlaces {
   district: string;
   foods: string[];
   musics: string[];
-  avaliation: string[];
+  avaliation: number;
   feedback: string[];
   id: number;
   image: string;
@@ -27,8 +27,10 @@ type AxiosRes = iPlaces[];
 interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
-  favPlaces: AxiosRes; 
-  userPlace: AxiosRes; 
+  favPlaces: AxiosRes;
+  userPlace: AxiosRes;
+  value: number | null;
+  setValue: Function;
 }
 
 interface IuserInfo {
@@ -42,9 +44,9 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
   const [userPlace, setUserPlace] = useState([] as AxiosRes);
-  
-  const idUser = localStorage.getItem('@idUser')
-  
+  const [value, setValue] = useState(2);
+
+  const idUser = localStorage.getItem("@idUser");
 
   useEffect(() => {
     api.get<AxiosRes>("/places").then((response) => {
@@ -52,15 +54,11 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     });
   }, []);
 
-
-
   useEffect(() => {
     api.get<AxiosRes>(`/places/${idUser}`).then((response) => {
       setUserPlace(response.data);
     });
   }, []);
-
-  console.log(userPlace);
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
@@ -87,7 +85,9 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   };
 
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, userPlace }}>
+    <LoginContext.Provider
+      value={{ onSubmitLogin, places, favPlaces, userPlace, value, setValue }}
+    >
       {children}
     </LoginContext.Provider>
   );
