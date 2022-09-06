@@ -10,7 +10,7 @@ export interface OnSubmitLoginProps {
   email: string;
   password: string;
 }
-interface iPlaces {
+export interface iPlaces {
   name: string;
   city: string;
   cep: string;
@@ -28,7 +28,6 @@ interface ILoginContext {
   places: AxiosRes;
   favPlaces: AxiosRes;
   userPlace: AxiosRes;
-  userData: iPlaces;
 }
 
 export interface IuserInfo {
@@ -43,8 +42,6 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
   const [userPlace, setUserPlace] = useState([] as AxiosRes);
 
-  const [userData, SetUserData] = useState({} as iPlaces);
-
   const idUser = localStorage.getItem("@idUser");
 
   useEffect(() => {
@@ -56,10 +53,6 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   useEffect(() => {
     api.get<AxiosRes>(`/places/${idUser}`).then((response) => {
       setUserPlace(response.data);
-    });
-
-    api.get<iPlaces>(`/users/${idUser}`).then((response) => {
-      SetUserData(response.data);
     });
   }, []);
 
@@ -87,7 +80,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
 
   return (
     <LoginContext.Provider
-      value={{ onSubmitLogin, places, favPlaces, userPlace, userData }}
+      value={{ onSubmitLogin, places, favPlaces, userPlace }}
     >
       {children}
     </LoginContext.Provider>

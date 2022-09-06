@@ -1,29 +1,42 @@
 import { Conteiner } from "./styled";
 
 import ButtonNav from "../../components/ButtonNav";
-import { useContext } from "react";
-import { IuserInfo, LoginContext } from "../../context/Login";
+import { useEffect, useState } from "react";
+import { iPlaces, IuserInfo } from "../../context/Login";
 import { useForm } from "react-hook-form";
 import api from "../../services/api";
+import toast from "react-hot-toast";
 
 function MenuUser() {
-  const { userData } = useContext(LoginContext);
+  const [userData, SetUserData] = useState({} as iPlaces);
+  const [update, setUpdate] = useState(false);
 
-  let user = userData;
+  useEffect(() => {
+    api.get<iPlaces>(`/users/${idUser}`).then((response) => {
+      SetUserData(response.data);
+    });
+  }, [update]);
 
   const { register, handleSubmit } = useForm<IuserInfo>();
 
+  const idUser = localStorage.getItem("@idUser");
+
   function updateUser(newUser: IuserInfo) {
-    newUser.name !== "" ? (user.name = newUser.name) : false;
-    newUser.image !== "" ? (user.image = newUser.image) : false;
+    newUser.name == "" ? (newUser.name = userData.name) : false;
+    newUser.image == "" ? (newUser.image = userData.image) : false;
 
-    api.patch("users/4", user).then((response) => {
-      const { name, image } = response.data;
+    api
+      .patch(`users/${idUser}`, newUser)
+      .then((response) => {
+        const { name, image } = response.data;
 
-      const userInfo: IuserInfo = { name, image };
+        const userInfo: IuserInfo = { name, image };
 
-      localStorage.setItem("@userInfo", JSON.stringify(userInfo));
-    });
+        localStorage.setItem("@userInfo", JSON.stringify(userInfo));
+        toast.success("Sucesso!!!");
+        setUpdate((resp) => !resp);
+      })
+      .catch((err) => toast.error("Erro!!!"));
   }
 
   return (
