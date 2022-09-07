@@ -56,7 +56,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     });
   }, []);
 
-  const onSubmitLogin = async (data: OnSubmitLoginProps) => {
+FeatureRegister  const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
       .post("/login", data)
       .then((res) => {
