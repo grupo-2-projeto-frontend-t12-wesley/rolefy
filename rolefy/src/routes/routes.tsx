@@ -4,6 +4,7 @@ import ChatCompany from "../Pages/chatCompany";
 import Login from "../Pages/Login";
 import MainPage from "../Pages/mainPage";
 import MenuConfig from "../Pages/menuConfig";
+import MenuUser from "../Pages/menuUser";
 import Message from "../Pages/message";
 import Register from "../Pages/register";
 
@@ -17,8 +18,7 @@ function RoutsMap() {
       <Route path="/chat/:id" element={<Chat />} />
       <Route path="/chatCompany/:id" element={<ChatCompany />} />
       <Route path="/configPage" element={<MenuConfig />} />
-
-      {/* <Route path="/editUser" element={<MenuUser />} /> */}
+      <Route path="/editUser" element={<MenuUser />} />
     </Routes>
   );
 }
