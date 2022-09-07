@@ -56,10 +56,14 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     });
   }, []);
 
+
   const token = localStorage.getItem("@token");
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
+
+  const onSubmitLogin = async (data: OnSubmitLoginProps) => {
+
     await api
       .post("/login", data)
       .then((res) => {
