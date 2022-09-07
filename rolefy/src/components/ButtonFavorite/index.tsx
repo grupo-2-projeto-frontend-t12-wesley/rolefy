@@ -19,6 +19,8 @@ interface IPlaceInfo{
 }
 function HeartFavorite({name, city, cep, district, foods, musics, avaliation, feedback, id, image} : iPlaces) {
   const {  favPlaces, setFavPlaces } = useContext(LoginContext);
+  const idUser = localStorage.getItem('@idUser')
+
   
 
   function saveNewFav(data : iPlaces){
@@ -39,19 +41,20 @@ function HeartFavorite({name, city, cep, district, foods, musics, avaliation, fe
 
     }
     
-    
+    PatchRequest()
     setFavPlaces([...favPlaces, newFav])
   
   }
   
 
   async function  PatchRequest(){
-    const idUser = localStorage.getItem('@idUser')
+    
     const favourites = {
       favourites: favPlaces
     }
       await api.patch(`users/${idUser}`, favourites).then((response) => {
-        response
+        setFavPlaces([...favPlaces, response.data.favourites])
+        localStorage.setItem('@FavPlaces', JSON.stringify(response.data.favourites));
         toast.success('Estabelecimento adicionado aos favoritos.')
       }).catch((error) => {
         console.log(error)
@@ -61,7 +64,7 @@ function HeartFavorite({name, city, cep, district, foods, musics, avaliation, fe
   
   return (
     <div>
-      <img src={ImageHeart} />
+      <button><img src={ImageHeart} /></button>
     </div>
   );
 }

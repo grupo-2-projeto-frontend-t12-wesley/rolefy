@@ -30,6 +30,8 @@ interface ILoginContext {
   favPlaces: AxiosRes; 
   userPlace: AxiosRes; 
   setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>> 
+  setUserPlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
+  
 }
 
 interface IuserInfo {
@@ -47,21 +49,10 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const idUser = localStorage.getItem('@idUser')
   
 
-  useEffect(() => {
-    api.get<AxiosRes>("/places").then((response) => {
-      setPlaces(response.data);
-    });
-  }, []);
+  
 
 
 
-  useEffect(() => {
-    api.get<AxiosRes>(`/places/${idUser}`).then((response) => {
-      setUserPlace(response.data);
-    });
-  }, []);
-
-  console.log(userPlace);
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
@@ -85,8 +76,47 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       .catch((err) =>  toast.error("Erro!!!"));
   };
 
+  
+  const loadUserInfo = async () => {
+    await api
+    .get(`/users/${idUser}`)
+      .then((res) => {
+       console.log(res)
+        const  { favourites,  }  = res.data;
+        
+        setFavPlaces(favourites);
+        
+        
+      })
+      .catch((err) =>  toast.error("Erro!!!"));
+    };
+    
+    const loadPlaceInfo = async () => {
+      await api
+      .get(`/places/${idUser}`)
+        .then((res) => {
+         console.log(res.data)
+         // const  { favourites,  }  = res.data;
+          
+          setUserPlace(res.data);
+          
+          
+        })
+        .catch((err) =>  toast.error("Erro!!!"));
+      }; 
+    
+    useEffect(() => {
+     api.get<AxiosRes>("/places").then((response) => {
+       setPlaces(response.data);
+     });
+  
+     loadUserInfo()
+     loadPlaceInfo()
+   }, []);
+
+
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, userPlace, setFavPlaces }}>
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, setFavPlaces }}>
       {children}
     </LoginContext.Provider>
   );

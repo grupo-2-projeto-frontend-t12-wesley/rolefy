@@ -14,17 +14,17 @@ import { LoginProvider, LoginContext } from "../../context/Login";
 function ShowFavorites() {
   const { places, favPlaces } = useContext(LoginContext);
 
-  const placesFiltered = places.filter((elem, index, arr) => {
+  /*  const placesFiltered = favPlaces.filter((elem, index, arr) => {
     const indice = arr.findIndex((innerElem) => {
       return elem.id === innerElem.id;
     });
     return index === indice;
-  });
+  });  */
 
   return (
     <ContainerCardPlace>
-      {placesFiltered.length > 0 ? (
-        placesFiltered.map((placeFiltered) => (
+      {favPlaces.length > 0 ? (
+        favPlaces.map((placeFiltered) => (
           <CardPlaces key={placeFiltered.id}>
             <figure>
               <img src={placeFiltered.image} alt="bar" />
@@ -36,7 +36,7 @@ function ShowFavorites() {
           </CardPlaces>
         ))
       ) : (
-        <div>nenhum resultado encontrado</div>
+        <div><h2>Nenhum resultado encontrado</h2></div>
       )}
     </ContainerCardPlace>
   );
