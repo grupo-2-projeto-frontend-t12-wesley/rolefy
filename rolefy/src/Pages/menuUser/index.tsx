@@ -9,13 +9,12 @@ import toast from "react-hot-toast";
 
 function MenuUser() {
   const [userData, SetUserData] = useState({} as iPlaces);
-  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     api.get<iPlaces>(`/users/${idUser}`).then((response) => {
       SetUserData(response.data);
     });
-  }, [update]);
+  }, []);
 
   const { register, handleSubmit } = useForm<IuserInfo>();
 
@@ -28,13 +27,8 @@ function MenuUser() {
     api
       .patch(`users/${idUser}`, newUser)
       .then((response) => {
-        const { name, image } = response.data;
-
-        const userInfo: IuserInfo = { name, image };
-
-        localStorage.setItem("@userInfo", JSON.stringify(userInfo));
         toast.success("Sucesso!!!");
-        setUpdate((resp) => !resp);
+        SetUserData(response.data);
       })
       .catch((err) => toast.error("Erro!!!"));
   }
