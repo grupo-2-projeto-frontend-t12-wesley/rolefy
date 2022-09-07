@@ -23,7 +23,7 @@ function Register() {
           placeholder="Nome"
           className="Nome"
           {...register("name")}
-        />
+        /> 
         <span>{errors?.name?.message}</span>
         <input
           type="text"
