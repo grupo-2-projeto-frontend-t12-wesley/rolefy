@@ -25,8 +25,7 @@ interface RegisterProviderProps{
       
     const navigate = useNavigate()
     
-    const onSubmitFunction = (dados:OnSubmitRegisterProps) => { const info = {...dados, favourites:[]}
-    console.log(info)
+    const onSubmitFunction = (dados:OnSubmitRegisterProps) => { const info = {...dados, favourites:[], company: false}
        axios
         .post("https://rolefy.herokuapp.com/users", info)
         .then((res) => {

@@ -60,7 +60,6 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     });
   }, []);
 
-  console.log(userPlace);
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
