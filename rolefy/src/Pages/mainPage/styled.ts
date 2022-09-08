@@ -33,10 +33,24 @@ export const Conteiner = styled.div`
 
   .keen-slider__slide {
     border-radius: 25px;
-    background-color: #59485e;
+    background-color: #2b2b2b;
     border: 5px solid #5ac49a;
   }
 
+  .adcFav{
+    z-index: 2;
+    position: absolute;
+    top: 1vh;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    width: 50px;
+    height: 55px;
+    background-color: red;
+    cursor: pointer;
+  }
+  .adcFav:hover{
+    background-color: #ed535d;
+  }
   .nomeDoRestaurante {
     font-family: "Roboto", sans-serif;
     color: #ffffff;

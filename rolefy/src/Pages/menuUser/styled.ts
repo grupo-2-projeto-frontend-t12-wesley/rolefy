@@ -28,6 +28,9 @@ export const Conteiner = styled.div`
     margin: 0 auto;
     margin-top: 20px;
   }
+  .return{
+    cursor: pointer;
+  }
   input{
     margin: 0 auto;
     width: 70vw;

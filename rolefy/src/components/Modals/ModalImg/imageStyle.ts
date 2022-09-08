@@ -21,7 +21,7 @@ export const MdlImage = styled.div`
     `;
 
 export const ImgPlace = styled.img` 
-    width:100px;
+    width:100%;
     display: grid;
     justify-items: center;
     `;    

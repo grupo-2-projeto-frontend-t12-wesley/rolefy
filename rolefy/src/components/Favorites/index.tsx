@@ -27,7 +27,7 @@ function ShowFavorites() {
         favPlaces.map((placeFiltered) => (
           <CardPlaces key={placeFiltered.id}>
             <figure>
-              <img src={placeFiltered.image} alt="bar" />
+              <img src={placeFiltered.image} alt="bar"/>
             </figure>
             <SuportInsideCard>
               <BusinessName>{placeFiltered.name}</BusinessName>

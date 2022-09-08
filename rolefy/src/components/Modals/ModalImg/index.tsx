@@ -67,7 +67,7 @@ function ModalImg() {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <ImageList sx={{ width: 300, height: 350 }} cols={1} rowHeight={82}>
+        <ImageList sx={{ width: 300, height: 350, display: "grid", justifyItems: 'center'}} cols={1} rowHeight={82}>
           {imagePlace.map((place) => (
             <ImageListItem key={place}>
               <ImgPlace

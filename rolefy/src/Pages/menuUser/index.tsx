@@ -45,6 +45,9 @@ function MenuUser() {
       transition={{ duration: 2 }}
     >
       <Conteiner>
+      <button className="return" onClick={() => navigate("/configPage")}>
+          <AiOutlineArrowLeft />
+        </button>
         <form action="" onSubmit={handleSubmit(updateUser)}>
           <label htmlFor="name">Atualizar o seu nome</label>
           <input
