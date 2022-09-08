@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 
 
-export const Background= styled.div`
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.45);
-
+export const InfoCard= styled.li`
+     border: 1px solid #FFFBFB;
+  border-radius: 5px;
+  width: 60%;
+  height: 150px;
+  color: black;
+  background-color: #FFFBFB;
+  padding: 10px;
+  list-style: none;
 `;
 
 export const MdlInfo = styled.div`

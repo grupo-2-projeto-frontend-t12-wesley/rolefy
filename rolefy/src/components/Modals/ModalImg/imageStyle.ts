@@ -16,8 +16,12 @@ export const MdlImage = styled.div`
     height: 50%;
     background-color: blue;
     border-radius: 1.254rem;
+  
+
     `;
 
 export const ImgPlace = styled.img` 
-    width:50px;
+    width:100px;
+    display: grid;
+    justify-items: center;
     `;    
