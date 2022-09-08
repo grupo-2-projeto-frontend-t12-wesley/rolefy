@@ -37,6 +37,7 @@ export const Conteiner = styled.div`
   }
 
   .nomeDoBtn {
+    cursor: pointer;
     color: white;
     width: 40vw;
     height: 10vh;

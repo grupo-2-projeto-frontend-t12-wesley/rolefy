@@ -2,6 +2,15 @@ import styled from "styled-components";
 
 export const Conteiner = styled.div`
   color: white;
+  .return {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 3rem;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+  }
 
   .Message {
     display: flex;
@@ -51,15 +60,9 @@ export const Conteiner = styled.div`
   }
 
   .chat::-webkit-scrollbar-thumb {
-    background-color: gray; /* color of the scroll thumb */
-    border-radius: 60px; /* roundness of the scroll thumb */
+    background-color: gray; 
+    border-radius: 60px; 
   }
-
-  .chat {
-    scrollbar-width: thin; /* "auto" or "thin" */
-    scrollbar-color: blue orange; /* scroll thumb and track */
-  }
-
   form {
     display: flex;
     justify-content: center;
@@ -83,5 +86,31 @@ export const Conteiner = styled.div`
       height: 32.45px;
       color: white;
     }
+    button:hover{
+      transition: 0.5s;
+      background-color: #5aad73;
+    }
   }
-`;
+
+  @media (min-width: 768px) {
+    .chat {
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: rgba(232, 232, 223);
+    width: 50vw;
+    min-height: 75vh;
+    max-height: 75vh;
+    overflow: auto;
+    border-radius: 25px 25px 0px 0px;
+    padding-bottom: 20px;
+  } 
+  form {
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    margin: 0 auto;
+    border: none;
+    height: 35px;
+  }
+}
+`

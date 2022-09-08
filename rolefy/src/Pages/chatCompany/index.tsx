@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import { Conteiner } from "./styled";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
@@ -48,10 +48,10 @@ function ChatCompany() {
     );
 
   }
+  const navigate = useNavigate();
   return (
     <Conteiner>
-      <button onClick={() => history.back()}>Voltar</button>
-      <h1>Chat Emprise</h1>
+      <button onClick={() => navigate("/message")}>Voltar</button>
       <div className="chat">
         {data?.map((resp: IMessage, index) => {
           if (resp.userId == userId) {
@@ -87,7 +87,7 @@ function ChatCompany() {
         />
         <button>Enviar</button>
       </form>
-      <ButtonNav />
+      <ButtonNav/>
     </Conteiner>
   );
 }

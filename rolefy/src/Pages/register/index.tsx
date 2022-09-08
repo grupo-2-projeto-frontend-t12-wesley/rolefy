@@ -47,7 +47,7 @@ function Register() {
         <span className="coloqueSeusDados">{errors?.email?.message}</span>
         <input
           type="text"
-          placeholder="inpCad"
+          placeholder="Senha"
           className="inpCad"
           {...register("password")}
         />
