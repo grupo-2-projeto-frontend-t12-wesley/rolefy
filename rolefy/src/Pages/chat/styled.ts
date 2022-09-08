@@ -5,6 +5,8 @@ export const Conteiner = styled.div`
 
   .Message {
     display: flex;
+    background-color: aqua;
+
 
     p {
       max-width: 50vw;
