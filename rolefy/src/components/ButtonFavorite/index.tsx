@@ -57,7 +57,7 @@ function HeartFavorite({name, city, cep, district, foods, musics, avaliation, fe
         localStorage.setItem('@FavPlaces', JSON.stringify(response.data.favourites));
         toast.success('Estabelecimento adicionado aos favoritos.')
       }).catch((error) => {
-        console.log(error)
+        console.log(error) 
        
       })
   }

@@ -48,16 +48,12 @@ function ButtonBusiness() {
         <button className="BtnImg" onClick={showImage}>
           Imagens
         </button>
-        <button className="BtnRate" onClick={showRate}>
-          Avaliação
-        </button>
         <button className="BtnInfo" onClick={showInfo}>
           Informações
         </button>
       </div>
 
       {isImage && <ModalImg />}
-      {isRate && <ModalRate />}
       {isInfo && <ModalInfo />}
     </ContainerMain>
   );

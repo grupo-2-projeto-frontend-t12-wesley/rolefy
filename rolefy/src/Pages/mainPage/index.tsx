@@ -11,16 +11,23 @@ import api from "../../services/api";
 import { GrFavorite } from "react-icons/gr";
 
 interface IPlaceInfo {
+  // name: string;
+  // city: string;
+  // cep: string;
+  // district: string;
+  // foods: string[];
+  // musics: string[];
+  // avaliation: string[];
+  // feedback: string[];
+  // id: number;
+  // image: string;
+
   name: string;
-  city: string;
+  description: string;
   cep: string;
-  district: string;
-  foods: string[];
-  musics: string[];
-  avaliation: string[];
-  feedback: string[];
-  id: number;
-  image: string;
+  city: string;
+  image: string[];
+  userId: string;
 }
 
 function MainPage() {
@@ -100,7 +107,7 @@ function MainPage() {
         {places.map((resp, index) => (
           <li className="keen-slider__slide " key={index}>
             <h1>{resp.name}</h1>
-            <button onClick={() => navigate(`/chat/${resp.id}`)}>Chat</button>
+            <button onClick={() => navigate(`/chat/${resp.userId}`)}>Chat</button>
 
             {/* <HeartFavorite resp={resp} /> */}
 

@@ -28,9 +28,11 @@ interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
   favPlaces: AxiosRes; 
-  userPlace: AxiosRes; 
+  imagePlace: AxiosRes; 
+  infoPlace: AxiosRes; 
   setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>> 
-  setUserPlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
+  setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
+  setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
   
 }
 
@@ -44,26 +46,24 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
-  const [userPlace, setUserPlace] = useState([] as AxiosRes);
+  const [imagePlace, setImagePlace] = useState([] as AxiosRes);
+  const [ infoPlace, setInfoPlace] = useState([] as AxiosRes);
   
   const idUser = localStorage.getItem('@idUser')
-  
+  const idBusiness = localStorage.getItem('@idBusiness')
 
   
-
-
-
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
       .post("/login", data)
       .then((res) => {
         const { accessToken } = res.data;
-        const { id, image, name } = res.data.user;
-        const { favourites } = res.data.user;
+        const { id, image, name, companyId, favourites } = res.data.user;
+        
         localStorage.setItem("@token", accessToken);
         localStorage.setItem("@idUser", id)
-        
+        localStorage.setItem("@idBusiness", companyId)
         const userInfo: IuserInfo = { name, image };
 
         localStorage.setItem("@userInfo", JSON.stringify(userInfo));
@@ -82,8 +82,9 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     .get(`/users/${idUser}`)
       .then((res) => {
        console.log(res)
-        const  { favourites,  }  = res.data;
-        
+        const  { favourites, companyId }  = res.data;
+        console.log(companyId)
+       
         setFavPlaces(favourites);
         
         
@@ -93,12 +94,13 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
     
     const loadPlaceInfo = async () => {
       await api
-      .get(`/places/${idUser}`)
+      .get(`/places/${idBusiness}`)
         .then((res) => {
-         console.log(res.data)
-         // const  { favourites,  }  = res.data;
+          const  { image, description }  = res.data;
+          console.log(image, description)
           
-          setUserPlace(res.data);
+          setImagePlace(image);
+          setInfoPlace(description);
           
           
         })
@@ -116,7 +118,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
 
 
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, setFavPlaces }}>
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, setFavPlaces, imagePlace, setImagePlace, infoPlace, setInfoPlace }}>
       {children}
     </LoginContext.Provider>
   );

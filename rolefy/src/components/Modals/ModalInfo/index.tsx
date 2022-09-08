@@ -33,7 +33,7 @@ const customStyles = {
 };
 
 function ModalInfo() {
-  const { places, favPlaces } = useContext(LoginContext);
+  const { infoPlace } = useContext(LoginContext);
 
   let subtitle: ModalInfo;
   const [modalIsOpen, setIsOpen] = useState(true);
@@ -81,7 +81,7 @@ function ModalInfo() {
         >
           <InfoCard>
                 <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                {infoPlace}
                 </p>
               </InfoCard>
         </Box>
