@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 
-// import ImagePlace from "../../assets/sample1.png";
+import ImagePlace from "../../assets/sample1.png";
 import {
   CardPlaces,
   SuportInsideCard,
@@ -31,7 +31,7 @@ function ShowFavorites() {
             </figure>
             <SuportInsideCard>
               <BusinessName>{placeFiltered.name}</BusinessName>
-              {/* <FakeStars>{placeFiltered.avaliation} Estrelas</FakeStars> */}
+              <FakeStars>{placeFiltered.avaliation} Estrelas</FakeStars>
             </SuportInsideCard>
           </CardPlaces>
         ))
