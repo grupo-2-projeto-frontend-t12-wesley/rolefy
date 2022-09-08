@@ -56,14 +56,14 @@ function CompanyRegistration() {
     api
       .post("https://rolefy.herokuapp.com/places", companyData)
       .then((resp) => {
-        console.log(resp);
+       
         localStorage.setItem("@idBusiness", resp.data.id);
         const updateUser = { companyId: resp.data.id }
 
             api
             .patch(`users/${idUser}`, updateUser)
             .then((response) => {
-              console.log(response)
+              
               toast.success("Sucesso!!!");
               navigate("/empresa");
             })

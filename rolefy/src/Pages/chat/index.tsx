@@ -48,7 +48,6 @@ function Chat() {
   function formSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    //@ts-ignore
     const empriseData = places.find((resp) => empriseId.id == resp.id);
 
     const resp = {
@@ -81,7 +80,7 @@ function Chat() {
 
   return (
     <Conteiner>
-      {/* Falar com thiago sobre o <Header/> */}
+    
       <button onClick={() => history.back()}>Voltar</button>
       <div className="chat">
         {data?.map((resp: IMessage, index) => {

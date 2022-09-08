@@ -4,6 +4,7 @@ import ButtonBusiness from "../../components/ButtonEmpresa";
 import MenuBusiness from "../../components/MenuBusiness";
 
 import CompanyRegistration from "../../components/CompanyRegistration";
+import { Container } from "./menuEmpresaStyle";
 
 function MenuEmpresa() {
   const navigate = useNavigate();
@@ -21,10 +22,10 @@ function MenuEmpresa() {
       {comapny == "undefined" ? (
         <CompanyRegistration />
       ) : (
-        <div>
+        <Container>
           <MenuBusiness />
           <ButtonBusiness />
-        </div>
+        </Container>
       )}
     </>
   );

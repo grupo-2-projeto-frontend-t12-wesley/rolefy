@@ -2,10 +2,7 @@ import { ReactNode } from "react";
 import { createGlobalStyle } from "styled-components";
 
  
-/*  interface ICreateGlobalStyle {
-children: any;
-
-} */
+/
 
 export default createGlobalStyle`
     * {
@@ -15,7 +12,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
 } 
     :root{
-        /* --BackgroundDegrade: linear-gradient(180deg, #0A0202 0%, rgba(90, 31, 91, 0.697917) 50%, #000000 100%); */
+       
         --black-letter: #000000;
 
     }

@@ -7,7 +7,7 @@ import type * as CSS from "csstype";
 import { useState } from "react";
 import { ImageList, ImageListItem } from "@mui/material";
 import { LoginProvider, LoginContext } from "../../../context/Login";
-import { InfoCard } from "./infoStyle";
+import { Info, InfoCard } from "./infoStyle";
 
 interface ModalInfo {
   subtitle: string;
@@ -80,9 +80,9 @@ function ModalInfo() {
         }}
         >
           <InfoCard>
-                <p>
+                <Info>
                 {infoPlace}
-                </p>
+                </Info>
               </InfoCard>
         </Box>
       </Modal>

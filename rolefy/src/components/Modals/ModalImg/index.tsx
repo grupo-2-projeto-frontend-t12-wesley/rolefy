@@ -8,6 +8,7 @@ import { useState } from "react";
 import { ImageList, ImageListItem } from "@mui/material";
 import { LoginProvider, LoginContext,  } from "../../../context/Login";
 import { ImgPlace } from "./imageStyle";
+import SendUrlImage from "./FormURLimage";
 
 interface ModalImg {
   subtitle: string;
@@ -31,6 +32,10 @@ const customStyles = {
     border: 'none',
   } as CSS.Properties,
 };
+
+interface Igenerators {
+  generatos :  randomId(maxNumber: number): number;
+}
 
 function ModalImg() {
   const { imagePlace } = useContext(LoginContext)
@@ -59,7 +64,11 @@ function ModalImg() {
     setIsOpen(false);
   }
 
-
+  const generators : Igenerators = {
+    randomId(maxNumber : number) {
+      return Math.round(Math.random() * maxNumber);
+    },
+  };
 
   
 
@@ -74,9 +83,9 @@ onAfterOpen={afterOpenModal}
 onRequestClose={closeModal}
 style={customStyles}
 >
-    <ImageList sx={{ width: 300, height: 350 }} cols={1} rowHeight={82}>
+    <ImageList sx={{ width: 300, height: 350, display: "grid", justifyItems: 'center'}} cols={1} rowHeight={82}>
       {imagePlace.map((place) => (
-        <ImageListItem key={place}>
+        <ImageListItem key={generators}>
           <ImgPlace
             src={`${place}?w=164&h=164&fit=crop&auto=format`}
             alt="Imagem do estabelecimento"
@@ -85,7 +94,7 @@ style={customStyles}
         </ImageListItem>
       ))}
     </ImageList>
-        
+   
 </Modal>
     </div>
   );

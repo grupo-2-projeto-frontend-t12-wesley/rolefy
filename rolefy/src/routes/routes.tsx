@@ -24,10 +24,10 @@ function RoutsMap() {
       <Route path="/empresa" element={<MenuEmpresa />} />
 
 
-      {/* <Route path="/editUser" element={<MenuUser />} /> */}
+      
     </Routes>
   );
 }
 export default RoutsMap;
 
-// ChatCompany
+

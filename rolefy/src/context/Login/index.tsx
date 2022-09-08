@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
-
 interface LoginProviderProps {
   children: ReactNode;
 }
@@ -27,13 +26,14 @@ type AxiosRes = iPlaces[];
 interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
-  favPlaces: AxiosRes; 
-  imagePlace: AxiosRes; 
-  infoPlace: AxiosRes; 
-  setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>> 
-  setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
-  setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
-  
+  favPlaces: AxiosRes;
+  imagePlace: AxiosRes;
+  infoPlace: AxiosRes;
+  namePlace: AxiosRes;
+  setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>>;
+  setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
+  setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
+  setNamePlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
 }
 
 interface IuserInfo {
@@ -47,12 +47,11 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
   const [imagePlace, setImagePlace] = useState([] as AxiosRes);
-  const [ infoPlace, setInfoPlace] = useState([] as AxiosRes);
-  
-  const idUser = localStorage.getItem('@idUser')
-  const idBusiness = localStorage.getItem('@idBusiness')
+  const [infoPlace, setInfoPlace] = useState([] as AxiosRes);
+  const [namePlace, setNamePlace] = useState([] as AxiosRes);
 
-  
+  const idUser = localStorage.getItem("@idUser");
+  const idBusiness = localStorage.getItem("@idBusiness");
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
@@ -60,65 +59,73 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       .then((res) => {
         const { accessToken } = res.data;
         const { id, image, name, companyId, favourites } = res.data.user;
-        
+
         localStorage.setItem("@token", accessToken);
-        localStorage.setItem("@idUser", id)
-        localStorage.setItem("@idBusiness", companyId)
+        localStorage.setItem("@idUser", id);
+        localStorage.setItem("@idBusiness", companyId);
         const userInfo: IuserInfo = { name, image };
 
         localStorage.setItem("@userInfo", JSON.stringify(userInfo));
 
         setFavPlaces(favourites);
-        
-        toast.success('Sucesso!!!')
+
+        toast.success("Sucesso!!!");
         navigate("/isLoged");
       })
-      .catch((err) =>  toast.error("Erro!!!"));
+      .catch((err) => toast.error("Erro!!!"));
   };
 
-  
   const loadUserInfo = async () => {
     await api
-    .get(`/users/${idUser}`)
+      .get(`/users/${idUser}`)
       .then((res) => {
-       console.log(res)
-        const  { favourites, companyId }  = res.data;
-        console.log(companyId)
-       
+        
+        const { favourites, companyId } = res.data;
+      
         setFavPlaces(favourites);
-        
-        
       })
-      .catch((err) =>  toast.error("Erro!!!"));
-    };
-    
-    const loadPlaceInfo = async () => {
-      await api
-      .get(`/places/${idBusiness}`)
-        .then((res) => {
-          const  { image, description }  = res.data;
-          console.log(image, description)
-          
-          setImagePlace(image);
-          setInfoPlace(description);
-          
-          
-        })
-        .catch((err) =>  toast.error("Erro!!!"));
-      }; 
-    
-    useEffect(() => {
-     api.get<AxiosRes>("/places").then((response) => {
-       setPlaces(response.data);
-     });
-  
-     loadUserInfo()
-     loadPlaceInfo()
-   }, []);
+      .catch((err) => toast.error("Erro!!!"));
+  };
 
+  const loadPlaceInfo = async () => {
+    await api
+      .get(`/places/${idBusiness}`)
+      .then((res) => {
+       
+        const { image, description, name } = res.data;
+        
+
+        setImagePlace(image);
+        setInfoPlace(description);
+        setNamePlace(name);
+      })
+      .catch((err) => toast.error("Erro!!!"));
+  };
+
+  useEffect(() => {
+    api.get<AxiosRes>("/places").then((response) => {
+      setPlaces(response.data);
+    });
+
+    loadUserInfo();
+    loadPlaceInfo();
+  }, []);
 
   return (
-    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, setFavPlaces, imagePlace, setImagePlace, infoPlace, setInfoPlace }}>
+    <LoginContext.Provider
+      value={{
+        onSubmitLogin,
+        places,
+        favPlaces,
+        setFavPlaces,
+        imagePlace,
+        setImagePlace,
+        infoPlace,
+        setInfoPlace,
+        namePlace,
+        setNamePlace,
+      }}
+    >
       {children}
     </LoginContext.Provider>
   );

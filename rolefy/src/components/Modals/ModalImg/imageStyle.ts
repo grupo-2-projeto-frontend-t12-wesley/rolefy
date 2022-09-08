@@ -12,8 +12,8 @@ export const Background= styled.div`
 `;
 
 export const MdlImage = styled.div`
-    width: 50%;
-    height: 50%;
+    width: 75%;
+    height: 75%;
     background-color: blue;
     border-radius: 1.254rem;
   

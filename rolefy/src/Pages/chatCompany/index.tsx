@@ -8,7 +8,7 @@ import ButtonNav from "../../components/ButtonNav";
 
 function ChatCompany() {
   const clientId = useParams();
-  console.log(clientId);
+  
   const userId = window.localStorage.getItem("@idUser");
   const [input, setInput] = useState("");
   const [data, setData] = useState([]);

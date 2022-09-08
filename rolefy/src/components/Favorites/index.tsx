@@ -31,7 +31,7 @@ function ShowFavorites() {
             </figure>
             <SuportInsideCard>
               <BusinessName>{placeFiltered.name}</BusinessName>
-              <FakeStars>{placeFiltered.avaliation} Estrelas</FakeStars>
+              
             </SuportInsideCard>
           </CardPlaces>
         ))

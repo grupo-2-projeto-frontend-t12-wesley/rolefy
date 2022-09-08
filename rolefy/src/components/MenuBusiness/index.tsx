@@ -1,13 +1,17 @@
+import { useContext } from 'react';
+import { LoginContext, iPlaces } from '../../context/Login';
 import { Header } from './MenuBusinessStyle'
 
 function MenuBusiness() {
+    const { namePlace, imagePlace } = useContext(LoginContext);
+
     return(
         <Header>
             <figure>
-               
-                <span className="ImageM">imagem</span>
+                <img src={imagePlace : iPlaces} alt="Logo" />
             </figure>
-            <h2>Empresas</h2>
+               
+            <h2>{namePlace : iPlaces}</h2>
         </Header>
     )
 }
