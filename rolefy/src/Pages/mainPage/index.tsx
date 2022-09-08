@@ -25,7 +25,7 @@ function MainPage() {
           </li>
         ))}
       </Slider>
- 
+  
       <nav>
         <button
           onClick={() => navigate(`/message`)}
