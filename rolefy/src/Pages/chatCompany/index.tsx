@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import { Conteiner } from "./styled";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
@@ -48,7 +48,9 @@ function ChatCompany() {
       { merge: true }
     );
   }
+  const navigate = useNavigate();
   return (
+
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -56,7 +58,7 @@ function ChatCompany() {
       transition={{ duration: 2 }}
     >
       <Conteiner>
-        <button onClick={() => history.back()}>Voltar</button>
+        <button onClick={() => navigate("/message")}>Voltar</button>
         <h1>Chat Emprise</h1>
         <div className="chat">
           {data?.map((resp: IMessage, index) => {
@@ -83,7 +85,6 @@ function ChatCompany() {
             }
           })}
         </div>
-
         <form onSubmit={(e) => formSubmit(e)}>
           <input
             type="text"
