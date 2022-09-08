@@ -6,6 +6,7 @@ import Login from "../Pages/Login";
 import MainPage from "../Pages/mainPage";
 import MenuConfig from "../Pages/menuConfig";
 import MenuEmpresa from "../Pages/menuEmpresa";
+import MenuUser from "../Pages/menuUser";
 import Message from "../Pages/message";
 import Register from "../Pages/register";
 
@@ -22,9 +23,7 @@ function RoutsMap() {
       <Route path="/configPage" element={<MenuConfig />} />
       <Route path="/favorite" element={<Favorite />} />
       <Route path="/empresa" element={<MenuEmpresa />} />
-
-
-      {/* <Route path="/editUser" element={<MenuUser />} /> */}
+      <Route path="/editUser" element={<MenuUser />} />
     </Routes>
   );
 }

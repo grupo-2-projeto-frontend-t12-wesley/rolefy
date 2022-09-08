@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
-
 interface LoginProviderProps {
   children: ReactNode;
 }
@@ -33,10 +32,9 @@ interface ILoginContext {
   setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>> 
   setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
   setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
-  
 }
 
-interface IuserInfo {
+export interface IuserInfo {
   name: string;
   image: string;
 }
@@ -53,6 +51,24 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const idBusiness = localStorage.getItem('@idBusiness')
 
   
+  useEffect(() => {
+    api.get<AxiosRes>("/places").then((response) => {
+      setPlaces(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api
+      .get<AxiosRes>(`/places/${idUser}`)
+      .then((response) => {
+        setUserPlace(response.data);
+      })
+      .catch((err) => console.log());
+  }, []);
+
+  const token = localStorage.getItem("@token");
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
@@ -62,18 +78,20 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         const { id, image, name, companyId, favourites } = res.data.user;
         
         localStorage.setItem("@token", accessToken);
+
         localStorage.setItem("@idUser", id)
         localStorage.setItem("@idBusiness", companyId)
+
         const userInfo: IuserInfo = { name, image };
 
         localStorage.setItem("@userInfo", JSON.stringify(userInfo));
 
         setFavPlaces(favourites);
-        
-        toast.success('Sucesso!!!')
+
+        toast.success("Sucesso!!!");
         navigate("/isLoged");
       })
-      .catch((err) =>  toast.error("Erro!!!"));
+      .catch((err) => toast.error("Erro!!!"));
   };
 
   
@@ -118,7 +136,9 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
 
 
   return (
+
     <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, setFavPlaces, imagePlace, setImagePlace, infoPlace, setInfoPlace }}>
+
       {children}
     </LoginContext.Provider>
   );
