@@ -69,7 +69,7 @@ function ModalImg() {
       >
         <ImageList sx={{ width: 300, height: 350, display: "grid", justifyItems: 'center'}} cols={1} rowHeight={82}>
           {imagePlace.map((place) => (
-            <ImageListItem key={place}>
+            <ImageListItem key={`${place}`}>
               <ImgPlace
                 src={`${place}?w=164&h=164&fit=crop&auto=format`}
                 alt="Imagem do estabelecimento"

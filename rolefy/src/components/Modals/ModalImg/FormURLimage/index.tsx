@@ -24,11 +24,11 @@ function SendUrlImage(){
         resolver: yupResolver(formSchema),
     });
     
-    function newImage(data: iPlaces){
-        if(!data) return;
+    // function newImage(data: iPlaces){
+    //     if(!data) return;
 
-        setImagePlace([...imagePlace, data])
-     }
+    //     setImagePlace([...imagePlace, data])
+    //  }
     
     function PatchRequest(data : iPlaces){
         const imgUrl = 

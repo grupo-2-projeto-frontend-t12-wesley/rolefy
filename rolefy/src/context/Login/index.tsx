@@ -11,36 +11,31 @@ export interface OnSubmitLoginProps {
   password: string;
 }
 export interface iPlaces {
-  // name: string;
-  // city: string;
-  // cep: string;
-  // district: string;
-  // foods: string[];
-  // musics: string[];
-  // avaliation: string[];
-  // feedback: string[];
-  // id: number;
-  // image: string;
-
+  city: string;
+  district: string;
+  foods: string[];
+  musics: string[];
+  avaliation: string[];
+  feedback: string[];
   email: string;
   name: string;
   cep: string;
   image: string;
-  favourites: string[];
-  company: boolean;
+  favourites?: string[];
+  company?: boolean;
   id: string;
-  userId: string;
+  userId?: string;
 }
 type AxiosRes = iPlaces[];
 interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
   favPlaces: AxiosRes;
-  imagePlace: AxiosRes;
-  infoPlace: AxiosRes;
+  imagePlace: String[];
+  infoPlace: string;
   setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>>;
-  setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
-  setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
+  setImagePlace: React.Dispatch<React.SetStateAction<string[]>>;
+  setInfoPlace: React.Dispatch<React.SetStateAction<string>>;
   id: string;
 }
 
@@ -54,8 +49,8 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const navigate = useNavigate();
   const [places, setPlaces] = useState([] as AxiosRes);
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
-  const [imagePlace, setImagePlace] = useState([] as AxiosRes);
-  const [infoPlace, setInfoPlace] = useState([] as AxiosRes);
+  const [imagePlace, setImagePlace] = useState<string[]>([]);
+  const [infoPlace, setInfoPlace] = useState<string>('');
   const [id, setId] = useState("");
 
   useEffect(() => {

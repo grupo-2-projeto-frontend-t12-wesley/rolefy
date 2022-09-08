@@ -16,34 +16,33 @@ interface IPlaceInfo{
   id: number;
   image: string;
 }
-function HeartFavorite({name, city, cep, district, foods, musics, avaliation, feedback, id, image} : iPlaces) {
+function HeartFavorite({name, city, cep, district, foods, musics, avaliation, feedback, id, image} : IPlaceInfo) {
   const {  favPlaces, setFavPlaces } = useContext(LoginContext);
   const idUser = localStorage.getItem('@idUser')
 
   
 
-  function saveNewFav(data : iPlaces){
-    if(!data) return;
+  // function saveNewFav(data : iPlaces){
+  //   if(!data) return;
 
    
-    const newFav : iPlaces = {
-      name: name,
-      city: city,
-      cep: cep,
-      district: district, 
-      foods: foods,
-      musics: musics,
-      avaliation: avaliation,
-      feedback: feedback,
-      id: id,
-      image: image 
-
-    }
+  //   const newFav = {
+  //     name: name,
+  //     city: city,
+  //     cep: cep,
+  //     district: district, 
+  //     foods: foods,
+  //     musics: musics,
+  //     avaliation: avaliation,
+  //     feedback: feedback,
+  //     id: id,
+  //     image: image 
+  //   }
     
-    PatchRequest()
-    setFavPlaces([...favPlaces, newFav])
+  //   PatchRequest()
+  //   setFavPlaces([...favPlaces, newFav])
   
-  }
+  // }
   
 
   async function  PatchRequest(){
