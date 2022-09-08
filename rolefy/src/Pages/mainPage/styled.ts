@@ -37,7 +37,7 @@ export const Conteiner = styled.div`
     border: 5px solid #5ac49a
 ;
   }
-
+ 
   .nomeDoRestaurante{
     font-family: 'Roboto', sans-serif;
     color: #ffffff;
