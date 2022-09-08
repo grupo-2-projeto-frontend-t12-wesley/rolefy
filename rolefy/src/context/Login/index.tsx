@@ -108,7 +108,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         setId(id);
         console.log(id);
       })
-      .catch((err) => toast.error("Erro!!!"));
+      .catch((err) => console.log());
   };
 
   const loadPlaceInfo = async () => {
@@ -121,7 +121,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         setImagePlace(image);
         setInfoPlace(description);
       })
-      .catch((err) => toast.error("Erro!!!"));
+      .catch((err) => console.log());
   };
 
   useEffect(() => {

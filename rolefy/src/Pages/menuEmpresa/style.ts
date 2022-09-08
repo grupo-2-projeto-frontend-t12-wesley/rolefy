@@ -12,4 +12,16 @@ export const Conteiner = styled.div`
     border: 0px;
     color: white;
   }
+  .containerBtn{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+button{
+  cursor: pointer;
+}
+  .sc-fnykZs{
+    margin: 0 auto;
+  }
 `;

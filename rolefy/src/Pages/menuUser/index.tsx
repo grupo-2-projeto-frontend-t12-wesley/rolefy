@@ -62,7 +62,7 @@ function MenuUser() {
             id="image"
           />
 
-          <button>Concluir</button>
+          <button className="saveChanges">Concluir</button>
         </form>
         <ButtonNav />
       </Conteiner>
