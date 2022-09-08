@@ -7,7 +7,7 @@ export const Header = styled.header`
    align-items: center;
     justify-content: space-around;
 
-    margin: 0rem 0rem 2.463rem 0rem;
+    margin: 3.563rem 0rem 2.463rem 0rem;
     width: 100%;
     height: 10%;
     background-color: rgba(71, 67, 67, 0.5);;
@@ -24,16 +24,4 @@ export const Header = styled.header`
         color: #FFFF;
     }
 
-.return{
-    position: absolute;
-    left: 0vw;
-    top: 0.5vh;
-}
-@media (min-width: 768px) {
-    .return{
-    position: absolute;
-    left: 5vw;
-    top: 0.5vh;
-}
-}
 `;

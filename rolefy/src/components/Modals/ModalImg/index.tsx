@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import type * as CSS from "csstype";
 import { useState } from "react";
 import { ImageList, ImageListItem } from "@mui/material";
-import { LoginProvider, LoginContext } from "../../../context/Login";
+import { LoginProvider, LoginContext,  } from "../../../context/Login";
 import { ImgPlace } from "./imageStyle";
 
 interface ModalImg {
@@ -27,13 +27,13 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "0",
-    background: "transparent",
-    border: "none",
+    background: 'transparent',
+    border: 'none',
   } as CSS.Properties,
 };
 
 function ModalImg() {
-  const { imagePlace } = useContext(LoginContext);
+  const { imagePlace } = useContext(LoginContext)
 
   let subtitle: ModalImg;
   const [modalIsOpen, setIsOpen] = useState(true);
@@ -59,28 +59,38 @@ function ModalImg() {
     setIsOpen(false);
   }
 
+
+
+  
+
   return (
     <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <ImageList sx={{ width: 300, height: 350 }} cols={1} rowHeight={82}>
-          {imagePlace.map((place) => (
-            <ImageListItem key={place}>
-              <ImgPlace
-                src={`${place}?w=164&h=164&fit=crop&auto=format`}
-                alt="Imagem do estabelecimento"
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </Modal>
+      
+
+
+<Modal
+isOpen={modalIsOpen}
+onAfterOpen={afterOpenModal}
+onRequestClose={closeModal}
+style={customStyles}
+>
+    <ImageList sx={{ width: 300, height: 350 }} cols={1} rowHeight={82}>
+      {imagePlace.map((place) => (
+        <ImageListItem key={place}>
+          <ImgPlace
+            src={`${place}?w=164&h=164&fit=crop&auto=format`}
+            alt="Imagem do estabelecimento"
+            loading="lazy"
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+        
+</Modal>
     </div>
   );
 }
 
 export default ModalImg;
+
+

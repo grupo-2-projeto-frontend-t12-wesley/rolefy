@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import { Conteiner } from "./styled";
+
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { LoginContext } from "../../context/Login";
 import ButtonNav from "../../components/ButtonNav";
 import { Header } from "../../components/BarraUser/BarUserStyle";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { motion } from "framer-motion";
-
 
 export interface IMessage {
   message: string;
@@ -65,6 +63,8 @@ function Chat() {
         empriseId: empriseId.id,
         image: empriseData?.image,
         name: empriseData?.name,
+        userName: userInfo.name,
+        userImage: userInfo.image,
       };
 
       setDoc(doc(fireDataBase, "chats", `${userId}${empriseId.id}`), newUser);
@@ -78,58 +78,48 @@ function Chat() {
       );
     }
   }
-  const navigate = useNavigate();
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 2 }}
-    >
-      <Conteiner>
-        <button onClick={() => navigate("/message")} className="return">
-        <AiOutlineArrowLeft />
-      </button>
-        <div className="chat">
-          {data?.map((resp: IMessage, index) => {
-            if (resp.userId == userId) {
-              return (
-                <div
-                  className="
-
+    <Conteiner>
+      {/* Falar com thiago sobre o <Header/> */}
+      <button onClick={() => history.back()}>Voltar</button>
+      <div className="chat">
+        {data?.map((resp: IMessage, index) => {
+          if (resp.userId == userId) {
+            return (
+              <div
+                className="
                 Message ownMessage"
-                  key={index}
-                >
-                  <p>{resp.message}</p>
-                </div>
-              );
-            } else {
-              return (
-                <div
-                  className="
+                key={index}
+              >
+                <p>{resp.message}</p>
+              </div>
+            );
+          } else {
+            return (
+              <div
+                className="
                 Message anotherUser"
-                  key={index}
-                >
-                  <p>{resp.message}</p>
-                </div>
-              );
-            }
-          })}
-        </div>
+                key={index}
+              >
+                <p>{resp.message}</p>
+              </div>
+            );
+          }
+        })}
+      </div>
 
-        <form onSubmit={(e) => formSubmit(e)}>
-          <input
-            type="text"
-            onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
-              setInput(resp.target.value)
-            }
-          />
-          <button>Enviar</button>
-        </form>
-        <ButtonNav />
-      </Conteiner>
-    </motion.div>
+      <form onSubmit={(e) => formSubmit(e)}>
+        <input
+          type="text"
+          onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
+            setInput(resp.target.value)
+          }
+        />
+        <button>Enviar</button>
+      </form>
+      <ButtonNav />
+    </Conteiner>
   );
 }
 

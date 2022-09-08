@@ -12,16 +12,4 @@ export const Conteiner = styled.div`
     width: 80%;
     margin: 2rem auto;
   }
-
-  .return {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-
-    font-size: 3rem;
-
-    background-color: transparent;
-    border: 0px;
-    color: white;
-  }
 `;
