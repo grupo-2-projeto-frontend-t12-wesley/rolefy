@@ -13,10 +13,7 @@ function MenuEmpresa() {
 
   return (
     <Conteiner>
-      <button onClick={() => navigate("/configPage")} className="return">
-        <AiOutlineArrowLeft />
-      </button>
-
+    
       {comapny == "undefined" ? (
         <CompanyRegistration />
       ) : (

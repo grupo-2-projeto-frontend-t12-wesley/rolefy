@@ -87,7 +87,7 @@ function CompanyRegistration() {
 
           <p className="erroMessage">{errors.name?.message}</p>
         </div>
-
+        
         <div className="conteinerInput">
           <textarea
             placeholder="Descrição da sua empresa"
