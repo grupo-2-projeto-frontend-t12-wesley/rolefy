@@ -59,7 +59,6 @@ function ChatCompany() {
     >
       <Conteiner>
         <button onClick={() => navigate("/message")}>Voltar</button>
-        <h1>Chat Emprise</h1>
         <div className="chat">
           {data?.map((resp: IMessage, index) => {
             if (resp.userId == userId) {

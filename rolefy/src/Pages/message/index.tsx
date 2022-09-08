@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import ButtonNav from "../../components/ButtonNav";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 interface IComments {
   message: string;
@@ -73,13 +74,8 @@ function Message() {
       transition={{ duration: 2 }}
     >
       <Conteiner>
-        <button
-          onClick={() => {
-            navigate("/isLoged");
-          }}
-          className="backButton"
-        >
-          Voltar
+      <button onClick={() => navigate("/isLoged")} className="voltar">
+          <AiOutlineArrowLeft /> Voltar
         </button>
 
         <div className="contact">
@@ -124,7 +120,6 @@ function Message() {
             );
           })}
         </div>
-        <ButtonNav />
       </Conteiner>
     </motion.div>
   );

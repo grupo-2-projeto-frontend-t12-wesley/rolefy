@@ -7,8 +7,16 @@ export const Conteiner = styled.div`
 
   svg {
     font-size: 3rem;
-
-    color: #4545a0;
+    color: white;
+    cursor: pointer;
+  }
+  .voltar{
+    display: flex;
+    justify-content: flex-start;
+    background-color: transparent;
+    margin-left: 5vw;
+    margin-top: 60px;
+    border: none ;
   }
   h1 {
     color: #fff;
@@ -55,7 +63,9 @@ export const Conteiner = styled.div`
       padding: 0.5rem;
       border-radius: 12px;
       display: flex;
-      width: 90%;
+      width: 88vw;
+      max-width: 700px;
+      height: 10vh;
 
       figure {
         width: 30%;
