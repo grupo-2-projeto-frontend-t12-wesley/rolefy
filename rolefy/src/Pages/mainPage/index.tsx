@@ -7,21 +7,9 @@ import ButtonNav from "../../components/ButtonNav";
 import HeartFavorite from "../../components/ButtonFavorite";
 import toast from "react-hot-toast";
 import api from "../../services/api";
-
 import { GrFavorite } from "react-icons/gr";
 
 interface IPlaceInfo {
-  // name: string;
-  // city: string;
-  // cep: string;
-  // district: string;
-  // foods: string[];
-  // musics: string[];
-  // avaliation: string[];
-  // feedback: string[];
-  // id: number;
-  // image: string;
-
   name: string;
   description: string;
   cep: string;
@@ -33,58 +21,17 @@ interface IPlaceInfo {
 function MainPage() {
   const { places, favPlaces, setFavPlaces } = useContext(LoginContext);
   const navigate = useNavigate();
-
   const userId = window.localStorage.getItem("@idUser");
-  
-  /* const GetFavs = async () => {
-    await api
-      .get(`/users/${userId}`)
-      .then((res) => {
-       console.log(res)
-        const  favourites  = res.data.favourites;
-        
-        
-        setFavPlaces(favourites);
-        
-      })
-      .catch((err) =>  toast.error("Erro!!!"));
-  }; */
-
-  /* function saveNewFav(data: IPlaceInfo) {
-    GetFavs();
-    if (!data) return;
-
-    console.log(favPlaces);
-    // const newFav : IPlaceInfo = {
-    //   name: name,
-    //   city: city,
-    //   cep: cep,
-    //   district: district,
-    //   foods: foods,
-    //   musics: musics,
-    //   avaliation: avaliation,
-    //   feedback: feedback,
-    //   id: id,
-    //   image: image
-
-    // }
-
-    setFavPlaces([...favPlaces, data]);
-    PatchRequest(data);
-  } */
-
-  async function PatchRequest(data : iPlaces) {
+  async function PatchRequest(data: iPlaces) {
     const favourites = {
-     // favourites: favPlaces,
-
-    favourites: [...favPlaces, data],
+      favourites: [...favPlaces, data],
     };
-    console.log(favPlaces)
+    console.log(favPlaces);
     await api
       .patch(`users/${userId}`, favourites)
       .then((response) => {
-        console.log(response)
-        setFavPlaces(response.data.favourites)
+        console.log(response);
+        setFavPlaces(response.data.favourites);
         localStorage.setItem(
           "@FavPlaces",
           JSON.stringify(response.data.favourites)
@@ -96,37 +43,28 @@ function MainPage() {
       });
   }
 
-
-
-
-  
-  
   return (
     <Conteiner>
       <Slider>
         {places.map((resp, index) => (
-
-          <li className="keen-slider__slide" key={index}>
-            <img
-              src={resp.image}
-              alt="foto do restaurante"
-              className="fotoDoRestaurante"
-            />
+          <li className="keen-slider__slide " key={index}>
+            <img src={resp.image} alt="" className="fotoDoRestaurante" />
             <div className="dadosDoRestaurante">
               <h1 className="nomeDoRestaurante">{resp.name}</h1>
-              <button onClick={() => navigate(`/chat/${resp.id}`)}>Chat</button>
+              <button onClick={() => navigate(`/chat/${resp.userId}`)}>
+                Chat
+              </button>
+            </div>
+
+            <div>
+              <button onClick={() => PatchRequest(resp)}>
+                <GrFavorite className="adcFav"/>
+              </button>
             </div>
           </li>
         ))}
       </Slider>
-
       <nav>
-
-        <button
-          onClick={() => navigate(`/message`)}
-          className="message"
-        ></button>
-
         <ButtonNav />
       </nav>
     </Conteiner>
