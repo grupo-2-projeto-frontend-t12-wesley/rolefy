@@ -7,8 +7,9 @@ import { Conteiner } from "./style";
 
 import toast from "react-hot-toast";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../context/Login";
 
 interface IRegisterCompany {
   name: string;
@@ -22,9 +23,11 @@ interface ICompanyId {
   companyId: string;
 }
 
-const idUser = localStorage.getItem("@idUser");
+// const idUser = localStorage.getItem("@idUser");
 
 function CompanyRegistration() {
+  const { id } = useContext(LoginContext);
+
   const schema = yup.object({
     name: yup.string().required("Campo obrigatorio"),
     description: yup.string().required("Campo obrigatorio"),
@@ -47,28 +50,31 @@ function CompanyRegistration() {
     const companyData = {
       ...data,
       image: [data.image],
-      userId: idUser,
+      userId: id,
     };
 
-    api
-      .post("https://rolefy.herokuapp.com/places", companyData)
-      .then((resp) => {
-        console.log(resp);
-        localStorage.setItem("@idBusiness", resp.data.id);
-        const updateUser = { companyId: resp.data.id };
+    console.log(id);
+    console.log(companyData);
 
-        api
-          .patch(`users/${idUser}`, updateUser)
-          .then((response) => {
-            console.log(response);
-            toast.success("Sucesso!!!");
-            navigate("/empresa");
-          })
-          .catch((err) => toast.error("Erro!!!"));
-      })
-      .catch((erro) => {
-        toast.error("Erro!!!");
-      });
+    // api
+    //   .post("https://rolefy.herokuapp.com/places", companyData)
+    //   .then((resp) => {
+    //     console.log(resp);
+    //     localStorage.setItem("@idBusiness", resp.data.id);
+    //     const updateUser = { companyId: resp.data.id };
+
+    //     api
+    //       .patch(`users/${idUser}`, updateUser)
+    //       .then((response) => {
+    //         console.log(response);
+    //         toast.success("Sucesso!!!");
+    //         navigate("/empresa");
+    //       })
+    //       .catch((err) => toast.error("Erro!!!"));
+    //   })
+    //   .catch((erro) => {
+    //     toast.error("Erro!!!");
+    //   });
   }
 
   console.log(errors);
@@ -80,16 +86,6 @@ function CompanyRegistration() {
           <input type="text" placeholder="Nome" {...register("name")} />
 
           <p className="erroMessage">{errors.name?.message}</p>
-        </div>
-
-        <div className="conteinerInput">
-          <input
-            type="text"
-            placeholder="Descrição da sua empresa"
-            {...register("description")}
-          />
-
-          <p className="erroMessage">{errors.description?.message}</p>
         </div>
 
         <div className="conteinerInput">

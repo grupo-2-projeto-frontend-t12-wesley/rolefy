@@ -41,6 +41,7 @@ interface ILoginContext {
   setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>>;
   setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
   setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
+  id: string;
 }
 
 export interface IuserInfo {
@@ -55,18 +56,13 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [favPlaces, setFavPlaces] = useState([] as AxiosRes);
   const [imagePlace, setImagePlace] = useState([] as AxiosRes);
   const [infoPlace, setInfoPlace] = useState([] as AxiosRes);
-
-  const idUser = localStorage.getItem("@idUser");
-  const idBusiness = localStorage.getItem("@idBusiness");
+  const [id, setId] = useState("");
 
   useEffect(() => {
     api.get<AxiosRes>("/places").then((response) => {
       setPlaces(response.data);
     });
   }, []);
-
-  const token = localStorage.getItem("@token");
-  api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
@@ -80,6 +76,8 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         localStorage.setItem("@idUser", id);
         localStorage.setItem("@idBusiness", companyId);
 
+        setId(id);
+
         const userInfo: IuserInfo = { name, image };
 
         localStorage.setItem("@userInfo", JSON.stringify(userInfo));
@@ -92,15 +90,23 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
       .catch((err) => toast.error("Erro!!!"));
   };
 
+  const idUser = localStorage.getItem("@idUser");
+  const idBusiness = localStorage.getItem("@idBusiness");
+
+  const token = localStorage.getItem("@token");
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
   const loadUserInfo = async () => {
     await api
       .get(`/users/${idUser}`)
       .then((res) => {
         console.log(res);
-        const { favourites, companyId } = res.data;
+        const { favourites, companyId, id } = res.data;
         console.log(companyId);
 
         setFavPlaces(favourites);
+        setId(id);
+        console.log(id);
       })
       .catch((err) => toast.error("Erro!!!"));
   };
@@ -138,6 +144,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         setImagePlace,
         infoPlace,
         setInfoPlace,
+        id,
       }}
     >
       {children}
