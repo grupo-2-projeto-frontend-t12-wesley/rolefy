@@ -12,13 +12,13 @@ function MenuConfig() {
   }
   return (
     <Conteiner>
-      <button className="return" onClick={() => history.back()}>
+      <button className="return" onClick={() =>  navigate("/isLoged")}>
         <AiOutlineArrowLeft />
       </button>
 
       <div className="conteinerInfo">
         <button
-          onClick={() => console.log("Ainda sem rota")}
+          onClick={() => navigate("/empresa")}
           className="buttonNav"
         >
           <h2 className="nomeDoBtn">Empresas</h2>

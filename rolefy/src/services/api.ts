@@ -1,11 +1,8 @@
- import axios from "axios";
-
-const token: string = localStorage.getItem("@token") || "";
+import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://rolefy.herokuapp.com",
   timeout: 5000,
-  headers: { Authorization: `Bearer ${token}` },
 });
 
-export default api; 
+export default api;

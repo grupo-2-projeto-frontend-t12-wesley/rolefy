@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { OnSubmitRegisterProps, RegisterContext } from "../../context/Register";
 import { formSchema } from "../../context/Register/validator";
 import { RegisterStyle } from "./RegisterStyled";
+import img from "./logo.png";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const { onSubmitFunction } = useContext(RegisterContext);
@@ -14,51 +17,57 @@ function Register() {
   } = useForm<OnSubmitRegisterProps>({
     resolver: yupResolver(formSchema),
   });
-
+  const navigate = useNavigate();
   return (
     <RegisterStyle>
+      <div className="header">
+        <button onClick={() => navigate("/")} className="voltar">
+          <AiOutlineArrowLeft /> Voltar
+        </button>
+        <div className="logotipo">
+          <h1 className="letreiroLogo">Rolê</h1>
+          <img src={img} alt="Logotipo" className="fy" />
+        </div>
+      </div>
+
       <form onSubmit={handleSubmit(onSubmitFunction)} className="formCadastro">
         <input
           type="text"
           placeholder="Nome"
-          className="Nome"
+          className="inpCad"
           {...register("name")}
-        /> 
-        <span>{errors?.name?.message}</span>
+        />
+        <span className="coloqueSeusDados">{errors?.name?.message}</span>
         <input
           type="text"
           placeholder="E-mail"
-          className="email"
+          className="inpCad"
           {...register("email")}
         />
-        <span>{errors?.email?.message}</span>
+        <span className="coloqueSeusDados">{errors?.email?.message}</span>
         <input
           type="text"
-          placeholder="Senha"
-          className="password"
+          placeholder="inpCad"
+          className="inpCad"
           {...register("password")}
         />
-        <span>{errors?.password?.message}</span>
+        <span className="coloqueSeusDados">{errors?.password?.message}</span>
         <input
           type="text"
           placeholder="Cep"
-          className="image"
+          className="inpCad"
           {...register("cep")}
         />
-        <span>{errors?.cep?.message}</span>
+        <span className="coloqueSeusDados">{errors?.cep?.message}</span>
         <input
           type="text"
           placeholder="Url da Foto de perfil"
-          className="imagem"
+          className="inpCad"
           {...register("image")}
         />
-        <span>{errors?.image?.message}</span>
-        <button
-          type="submit"
-          placeholder="botaoSubmitCad"
-          className="btnEnviar"
-        >
-          Submit
+        <span className="coloqueSeusDados">{errors?.image?.message}</span>
+        <button type="submit" placeholder="botaoSubmitCad" className="btnCad">
+          Cadastrar
         </button>
       </form>
     </RegisterStyle>

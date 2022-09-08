@@ -11,7 +11,7 @@ function ButtonNav() {
     <Conteiner>
       <nav>
         <button className="message">
-          <AiFillStar className="home" />
+          <AiFillStar className="home" onClick={() => navigate(`/favorite`)}/>
         </button>
 
         <button className="message">
