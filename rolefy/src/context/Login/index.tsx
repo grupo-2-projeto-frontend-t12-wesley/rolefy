@@ -57,7 +57,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   useEffect(() => {
     api.get<AxiosRes>(`/places/${idUser}`).then((response) => {
       setUserPlace(response.data);
-    });
+    }).catch((err) => console.log())
   }, []);
 
 

@@ -21,14 +21,14 @@ function MenuConfig() {
           onClick={() => console.log("Ainda sem rota")}
           className="buttonNav"
         >
-          <h2>Empresas</h2>
+          <h2 className="nomeDoBtn">Empresas</h2>
         </button>
         <button onClick={() => navigate("/editUser")} className="buttonNav">
-          <h2>Meu perfil</h2>
+          <h2 className="nomeDoBtn">Meu perfil</h2>
         </button>
 
-        <button onClick={() => limpar()}>
-          <h2>Sair</h2>
+        <button onClick={() => limpar()} className="buttonNav">
+          <h2 className="nomeDoBtn">Sair</h2>
         </button>
       </div>
       <ButtonNav />
