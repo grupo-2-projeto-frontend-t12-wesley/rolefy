@@ -29,7 +29,7 @@ function Register() {
           <img src={img} alt="Logotipo" className="fy" />
         </div>
       </div>
-
+ 
       <form onSubmit={handleSubmit(onSubmitFunction)} className="formCadastro">
         <input
           type="text"
