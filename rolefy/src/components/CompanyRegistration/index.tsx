@@ -56,25 +56,25 @@ function CompanyRegistration() {
     console.log(id);
     console.log(companyData);
 
-    // api
-    //   .post("https://rolefy.herokuapp.com/places", companyData)
-    //   .then((resp) => {
-    //     console.log(resp);
-    //     localStorage.setItem("@idBusiness", resp.data.id);
-    //     const updateUser = { companyId: resp.data.id };
+    api
+      .post("https://rolefy.herokuapp.com/places", companyData)
+      .then((resp) => {
+        console.log(resp);
+        localStorage.setItem("@idBusiness", resp.data.id);
+        const updateUser = { companyId: resp.data.id };
 
-    //     api
-    //       .patch(`users/${idUser}`, updateUser)
-    //       .then((response) => {
-    //         console.log(response);
-    //         toast.success("Sucesso!!!");
-    //         navigate("/empresa");
-    //       })
-    //       .catch((err) => toast.error("Erro!!!"));
-    //   })
-    //   .catch((erro) => {
-    //     toast.error("Erro!!!");
-    //   });
+        api
+          .patch(`users/${id}`, updateUser)
+          .then((response) => {
+            console.log(response);
+            toast.success("Sucesso!!!");
+            navigate("/empresa");
+          })
+          .catch((err) => toast.error("Erro!!!"));
+      })
+      .catch((erro) => {
+        toast.error("Erro!!!");
+      });
   }
 
   console.log(errors);
