@@ -26,6 +26,7 @@ type AxiosRes = iPlaces[];
 interface ILoginContext {
   onSubmitLogin: (data: OnSubmitLoginProps) => void;
   places: AxiosRes;
+<<<<<<< HEAD
   favPlaces: AxiosRes;
   imagePlace: AxiosRes;
   infoPlace: AxiosRes;
@@ -34,9 +35,17 @@ interface ILoginContext {
   setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
   setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
   setNamePlace: React.Dispatch<React.SetStateAction<AxiosRes>>;
+=======
+  favPlaces: AxiosRes; 
+  imagePlace: AxiosRes; 
+  infoPlace: AxiosRes; 
+  setFavPlaces: React.Dispatch<React.SetStateAction<AxiosRes>> 
+  setImagePlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
+  setInfoPlace: React.Dispatch<React.SetStateAction<AxiosRes>> 
+>>>>>>> 483e6bb5e8779ba31ded19e000924731d7688355
 }
 
-interface IuserInfo {
+export interface IuserInfo {
   name: string;
   image: string;
 }
@@ -50,8 +59,30 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   const [infoPlace, setInfoPlace] = useState([] as AxiosRes);
   const [namePlace, setNamePlace] = useState([] as AxiosRes);
 
+<<<<<<< HEAD
   const idUser = localStorage.getItem("@idUser");
   const idBusiness = localStorage.getItem("@idBusiness");
+=======
+  
+  useEffect(() => {
+    api.get<AxiosRes>("/places").then((response) => {
+      setPlaces(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api
+      .get<AxiosRes>(`/places/${idUser}`)
+      .then((response) => {
+        setUserPlace(response.data);
+      })
+      .catch((err) => console.log());
+  }, []);
+
+  const token = localStorage.getItem("@token");
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+>>>>>>> 483e6bb5e8779ba31ded19e000924731d7688355
 
   const onSubmitLogin = async (data: OnSubmitLoginProps) => {
     await api
@@ -61,8 +92,15 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         const { id, image, name, companyId, favourites } = res.data.user;
 
         localStorage.setItem("@token", accessToken);
+<<<<<<< HEAD
         localStorage.setItem("@idUser", id);
         localStorage.setItem("@idBusiness", companyId);
+=======
+
+        localStorage.setItem("@idUser", id)
+        localStorage.setItem("@idBusiness", companyId)
+
+>>>>>>> 483e6bb5e8779ba31ded19e000924731d7688355
         const userInfo: IuserInfo = { name, image };
 
         localStorage.setItem("@userInfo", JSON.stringify(userInfo));
@@ -112,6 +150,7 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <LoginContext.Provider
       value={{
         onSubmitLogin,
@@ -126,6 +165,11 @@ export const LoginProvider = ({ children }: LoginProviderProps) => {
         setNamePlace,
       }}
     >
+=======
+
+    <LoginContext.Provider value={{ onSubmitLogin, places, favPlaces, setFavPlaces, imagePlace, setImagePlace, infoPlace, setInfoPlace }}>
+
+>>>>>>> 483e6bb5e8779ba31ded19e000924731d7688355
       {children}
     </LoginContext.Provider>
   );

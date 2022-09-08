@@ -1,10 +1,11 @@
- * {
-    margin:0;
-    padding: 0;
-    outline:0;
-    box-sizing: border-box;
-} 
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
 
+<<<<<<< HEAD
 body{
     background-image: linear-gradient(180deg, #0A0202 0%, rgba(90, 31, 91, 0.697917) 50%, #000000 100%);
     color: #0000;
@@ -12,6 +13,20 @@ body{
     height: 100vh;
     -webkit-font-smoothing: antialiased;
   
+=======
+body {
+  background-image: linear-gradient(
+    180deg,
+    #0a0202 0%,
+    rgba(90, 31, 91, 0.697917) 50%,
+    #000000 100%
+  );
+  color: #0000;
+  width: 100vw;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  /* overflow-x: hidden; */
+>>>>>>> 483e6bb5e8779ba31ded19e000924731d7688355
 }
 
 #root{
@@ -20,14 +35,14 @@ body{
    
 }
 
-.App{
+.App {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.formularioLogin{
+.formularioLogin {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,29 +50,28 @@ body{
   gap: 10px;
 }
 
-.emailInput{
+.emailInput {
   width: 65vw;
 }
 
-.senhaInput{
+.senhaInput {
   width: 65vw;
 }
 
-.botaoLogin{
+.botaoLogin {
   width: 65vw;
 }
 
 @media (min-width: 720px) {
-  .emailInput{
-    width: 20vw;
-  }
-  
-  .senhaInput{
-    width: 20vw;
-  }
-  
-  .botaoLogin{
+  .emailInput {
     width: 20vw;
   }
 
+  .senhaInput {
+    width: 20vw;
+  }
+
+  .botaoLogin {
+    width: 20vw;
+  }
 }
