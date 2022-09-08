@@ -27,11 +27,13 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "0",
+    background: 'transparent',
+    border: 'none',
   } as CSS.Properties,
 };
 
 function ModalImg() {
-  const { places, favPlaces } = useContext(LoginContext)
+  const { imagePlace } = useContext(LoginContext)
 
   let subtitle: ModalImg;
   const [modalIsOpen, setIsOpen] = useState(true);
@@ -73,18 +75,17 @@ onRequestClose={closeModal}
 style={customStyles}
 >
     <ImageList sx={{ width: 300, height: 350 }} cols={1} rowHeight={82}>
-      {places.map((place) => (
-        <ImageListItem key={place.id}>
+      {imagePlace.map((place) => (
+        <ImageListItem key={place}>
           <ImgPlace
-            src={`${place.image}?w=164&h=164&fit=crop&auto=format`}
-            srcSet={`${place.image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            alt={place.name}
+            src={`${place}?w=164&h=164&fit=crop&auto=format`}
+            alt="Imagem do estabelecimento"
             loading="lazy"
           />
         </ImageListItem>
       ))}
     </ImageList>
-
+        
 </Modal>
     </div>
   );

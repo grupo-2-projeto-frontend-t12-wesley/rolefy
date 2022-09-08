@@ -22,6 +22,7 @@ export const CardPlaces = styled.li`
     border-radius: 0.421rem;
     align-items: center;
     justify-content: space-evenly;
+    color: black;
 
     img{
         width: 50px;
