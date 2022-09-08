@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/Login";
 import { Conteiner } from "./styled";
-
+import { motion } from "framer-motion";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import ButtonNav from "../../components/ButtonNav";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 interface IComments {
   message: string;
@@ -66,62 +67,61 @@ function Message() {
   }, []);
 
   return (
-    <Conteiner>
-      <button
-        onClick={() => {
-          navigate("/isLoged");
-        }}
-      >
-        Voltar
-      </button>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
+      <Conteiner>
+      <button onClick={() => navigate("/isLoged")} className="voltar">
+          <AiOutlineArrowLeft /> Voltar
+        </button>
 
-      <h1>message</h1>
+        <div className="contact">
+          {messageArray.map((resp: IMessage, index: number) => {
+            const comment = resp.Comments[resp.Comments.length - 1].message;
 
-      <div className="contact">
-        {messageArray.map((resp: IMessage, index: number) => {
-          const comment = resp.Comments[resp.Comments.length - 1].message;
+            return (
+              <a href={`/chat/${resp.empriseId}`} key={index}>
+                <h1>Mensagens</h1>
+                <div className="messageConteiner">
+                  <figure>
+                    <img src={resp.image} alt={resp.name} />
+                  </figure>
+                  <div className="infoMessage">
+                    <p>{resp.name}</p>
 
-          return (
-            <a href={`/chat/${resp.empriseId}`} key={index}>
-              <div className="messageConteiner">
-                <figure>
-                  <img src={resp.image} alt={resp.name} />
-                </figure>
-                <div className="infoMessage">
-                  <p>{resp.name}</p>
-
-                  <p className="comment">{comment}</p>
+                    <p className="comment">{comment}</p>
+                  </div>
                 </div>
-              </div>
-            </a>
-          );
-        })}
-      </div>
+              </a>
+            );
+          })}
+        </div>
 
-      <div className="contact">
-        <h2>Meus clientes</h2>
+        <div className="contact">
+          {messageArrayClient?.map((resp: IMessage, index: number) => {
+            const comment = resp.Comments[resp.Comments.length - 1].message;
 
-        {messageArrayClient?.map((resp: IMessage, index: number) => {
-          const comment = resp.Comments[resp.Comments.length - 1].message;
+            return (
+              <a href={`/chatCompany/${resp.userId}`} key={index}>
+                <div className="messageConteiner">
+                  <figure>
+                    <img src={resp.image} alt={resp.name} />
+                  </figure>
+                  <div className="infoMessage">
+                    <p>{resp.name}</p>
 
-          return (
-            <a href={`/chatCompany/${resp.userId}`} key={index}>
-              <div className="messageConteiner">
-                <figure>
-                  <img src={resp.image} alt={resp.name} />
-                </figure>
-                <div className="infoMessage">
-                  <p>{resp.name}</p>
-
-                  <p className="comment">{comment}</p>
+                    <p className="comment">{comment}</p>
+                  </div>
                 </div>
-              </div>
-            </a>
-          );
-        })}
-      </div>
-      <ButtonNav />
-    </Conteiner>
+              </a>
+            );
+          })}
+        </div>
+      </Conteiner>
+    </motion.div>
   );
 }
 

@@ -29,7 +29,7 @@ function Register() {
           <img src={img} alt="Logotipo" className="fy" />
         </div>
       </div>
-
+ 
       <form onSubmit={handleSubmit(onSubmitFunction)} className="formCadastro">
         <input
           type="text"
@@ -47,7 +47,7 @@ function Register() {
         <span className="coloqueSeusDados">{errors?.email?.message}</span>
         <input
           type="text"
-          placeholder="inpCad"
+          placeholder="Senha"
           className="inpCad"
           {...register("password")}
         />

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import { Conteiner } from "./styled";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { IMessage } from "../chat";
 import ButtonNav from "../../components/ButtonNav";
+import { motion } from "framer-motion";
 
 function ChatCompany() {
   const clientId = useParams();
@@ -46,49 +47,55 @@ function ChatCompany() {
       },
       { merge: true }
     );
-
   }
+  const navigate = useNavigate();
   return (
-    <Conteiner>
-      <button onClick={() => history.back()}>Voltar</button>
-      <h1>Chat Emprise</h1>
-      <div className="chat">
-        {data?.map((resp: IMessage, index) => {
-          if (resp.userId == userId) {
-            return (
-              <div
-                className="
-                Message ownMessage"
-                key={index}
-              >
-                <p>{resp.message}</p>
-              </div>
-            );
-          } else {
-            return (
-              <div
-                className="
-                Message anotherUser"
-                key={index}
-              >
-                <p>{resp.message}</p>
-              </div>
-            );
-          }
-        })}
-      </div>
 
-      <form onSubmit={(e) => formSubmit(e)}>
-        <input
-          type="text"
-          onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
-            setInput(resp.target.value)
-          }
-        />
-        <button>Enviar</button>
-      </form>
-      <ButtonNav />
-    </Conteiner>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
+      <Conteiner>
+        <button onClick={() => navigate("/message")}>Voltar</button>
+        <div className="chat">
+          {data?.map((resp: IMessage, index) => {
+            if (resp.userId == userId) {
+              return (
+                <div
+                  className="
+                Message ownMessage"
+                  key={index}
+                >
+                  <p>{resp.message}</p>
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  className="
+                Message anotherUser"
+                  key={index}
+                >
+                  <p>{resp.message}</p>
+                </div>
+              );
+            }
+          })}
+        </div>
+        <form onSubmit={(e) => formSubmit(e)}>
+          <input
+            type="text"
+            onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
+              setInput(resp.target.value)
+            }
+          />
+          <button>Enviar</button>
+        </form>
+        <ButtonNav />
+      </Conteiner>
+    </motion.div>
   );
 }
 

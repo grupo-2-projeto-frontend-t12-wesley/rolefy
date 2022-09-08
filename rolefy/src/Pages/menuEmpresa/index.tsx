@@ -4,20 +4,16 @@ import ButtonBusiness from "../../components/ButtonEmpresa";
 import MenuBusiness from "../../components/MenuBusiness";
 
 import CompanyRegistration from "../../components/CompanyRegistration";
+import { Conteiner } from "./style";
 
 function MenuEmpresa() {
   const navigate = useNavigate();
 
   const comapny = localStorage.getItem("@idBusiness");
 
-
-
   return (
-    <>
-      <button onClick={() => navigate("/configPage")}>
-        <AiOutlineArrowLeft />
-      </button>
-
+    <Conteiner>
+    
       {comapny == "undefined" ? (
         <CompanyRegistration />
       ) : (
@@ -26,7 +22,7 @@ function MenuEmpresa() {
           <ButtonBusiness />
         </div>
       )}
-    </>
+    </Conteiner>
   );
 }
 
