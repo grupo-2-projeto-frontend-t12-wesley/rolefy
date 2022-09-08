@@ -17,12 +17,12 @@ body{
 #root{
     width: 100%;
     height: 100%;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    align-items: center; */
+    align-items: center;
 }
 
-/* .App{
+.App{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,4 +62,4 @@ body{
     width: 20vw;
   }
 
-} */
+}

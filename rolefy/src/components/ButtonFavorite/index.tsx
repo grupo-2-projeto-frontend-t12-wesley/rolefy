@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ImageHeart from "../../assets/svgFiles/Group.svg";
 
 function HeartFavorite() {

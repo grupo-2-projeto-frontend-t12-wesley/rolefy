@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import { Conteiner } from "./styled";
+
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { LoginContext } from "../../context/Login";
 import { IMessage } from "../chat";
-import ButtonNav from "../../components/ButtonNav";
 
 function ChatCompany() {
+  const { places } = useContext(LoginContext);
+
   const clientId = useParams();
+
   console.log(clientId);
+
   const userId = window.localStorage.getItem("@idUser");
+
   const [input, setInput] = useState("");
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -34,6 +41,7 @@ function ChatCompany() {
 
   function formSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     const resp = {
       message: input,
       userId: userId,
@@ -46,12 +54,14 @@ function ChatCompany() {
       },
       { merge: true }
     );
-
   }
+
   return (
     <Conteiner>
       <button onClick={() => history.back()}>Voltar</button>
+
       <h1>Chat Emprise</h1>
+
       <div className="chat">
         {data?.map((resp: IMessage, index) => {
           if (resp.userId == userId) {
@@ -87,7 +97,6 @@ function ChatCompany() {
         />
         <button>Enviar</button>
       </form>
-      <ButtonNav />
     </Conteiner>
   );
 }

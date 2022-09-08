@@ -1,37 +1,34 @@
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "../../components/slider";
 import { LoginContext } from "../../context/Login";
 import { Conteiner } from "./styled";
-import ButtonNav from "../../components/ButtonNav";
+
+import { IoChatbubbles } from "react-icons/io5";
 function MainPage() {
   const { places } = useContext(LoginContext);
+
+  // console.log(places);
+
   const navigate = useNavigate();
+
+  const userId = window.localStorage.getItem("@idUser");
 
   return (
     <Conteiner>
       <Slider>
         {places.map((resp, index) => (
-          <li className="keen-slider__slide" key={index}>
-            <img
-              src={resp.image}
-              alt="foto do restaurante"
-              className="fotoDoRestaurante"
-            />
-            <div className="dadosDoRestaurante">
-              <h1 className="nomeDoRestaurante">{resp.name}</h1>
-              <button onClick={() => navigate(`/chat/${resp.id}`)}>Chat</button>
-            </div>
+          <li className="keen-slider__slide " key={index}>
+            <h1>{resp.name}</h1>
+            <button onClick={() => navigate(`/chat/${resp.id}`)}>Chat</button>
           </li>
         ))}
       </Slider>
 
       <nav>
-        <button
-          onClick={() => navigate(`/message`)}
-          className="message"
-        ></button>
-        <ButtonNav />
+        <button onClick={() => navigate(`/message`)} className="message">
+          <IoChatbubbles />
+        </button>
       </nav>
     </Conteiner>
   );

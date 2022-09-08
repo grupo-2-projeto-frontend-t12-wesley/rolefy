@@ -5,7 +5,6 @@ import { Conteiner } from "./styled";
 
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
-import ButtonNav from "../../components/ButtonNav";
 
 interface IComments {
   message: string;
@@ -120,7 +119,6 @@ function Message() {
           );
         })}
       </div>
-      <ButtonNav />
     </Conteiner>
   );
 }
