@@ -7,7 +7,9 @@ import { formSchemaLogin } from "../../context/Login/validator";
 import { useNavigate } from "react-router-dom";
 import { LoginStyle } from "./login";
 import img from "./logo.png";
+
 import { motion } from "framer-motion";
+
 
 function Login() {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ function Login() {
     }
   }, []);
   return (
+
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

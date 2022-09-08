@@ -6,9 +6,13 @@ import { iPlaces, IuserInfo } from "../../context/Login";
 import { useForm } from "react-hook-form";
 import api from "../../services/api";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function MenuUser() {
   const [userData, SetUserData] = useState({} as iPlaces);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get<iPlaces>(`/users/${idUser}`).then((response) => {

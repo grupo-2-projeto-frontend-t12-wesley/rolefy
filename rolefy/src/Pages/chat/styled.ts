@@ -7,6 +7,7 @@ export const Conteiner = styled.div`
     display: flex;
     background-color: aqua;
 
+
     p {
       max-width: 50vw;
       padding: 0.8rem;
@@ -29,6 +30,7 @@ export const Conteiner = styled.div`
 
   .anotherUser {
     align-items: flex-start;
+    background-color: rgba(232, 232, 223);
     p {
       border-radius: 1rem 1rem 1rem 0rem;
     }
@@ -41,9 +43,23 @@ export const Conteiner = styled.div`
     width: 95vw;
     min-height: 75vh;
     max-height: 75vh;
-    overflow: scroll;
+    overflow: auto;
     border-radius: 25px 25px 0px 0px;
     padding-bottom: 20px;
+  }
+
+  .chat::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .chat::-webkit-scrollbar-thumb {
+    background-color: gray; /* color of the scroll thumb */
+    border-radius: 60px; /* roundness of the scroll thumb */
+  }
+
+  .chat {
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: blue orange; /* scroll thumb and track */
   }
 
   form {
