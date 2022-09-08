@@ -9,6 +9,9 @@ import ButtonNav from "../../components/ButtonNav";
 import { Header } from "../../components/BarraUser/BarUserStyle";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
+import { motion } from "framer-motion";
+
+
 export interface IMessage {
   message: string;
   userId: string;
@@ -82,48 +85,55 @@ function Chat() {
   const navigate = useNavigate();
 
   return (
-    <Conteiner>
-
-      <button onClick={() => navigate("/message")} className="return">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
+      <Conteiner>
+        <button onClick={() => navigate("/message")} className="return">
         <AiOutlineArrowLeft />
       </button>
-      <div className="chat">
-        {data?.map((resp: IMessage, index) => {
-          if (resp.userId == userId) {
-            return (
-              <div
-                className="
-                Message ownMessage"
-                key={index}
-              >
-                <p>{resp.message}</p>
-              </div>
-            );
-          } else {
-            return (
-              <div
-                className="
-                Message anotherUser"
-                key={index}
-              >
-                <p>{resp.message}</p>
-              </div>
-            );
-          }
-        })}
-      </div>
+        <div className="chat">
+          {data?.map((resp: IMessage, index) => {
+            if (resp.userId == userId) {
+              return (
+                <div
+                  className="
 
-      <form onSubmit={(e) => formSubmit(e)}>
-        <input
-          type="text"
-          onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
-            setInput(resp.target.value)
-          }
-        />
-        <button>Enviar</button>
-      </form>
-      <ButtonNav />
-    </Conteiner>
+                Message ownMessage"
+                  key={index}
+                >
+                  <p>{resp.message}</p>
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  className="
+                Message anotherUser"
+                  key={index}
+                >
+                  <p>{resp.message}</p>
+                </div>
+              );
+            }
+          })}
+        </div>
+
+        <form onSubmit={(e) => formSubmit(e)}>
+          <input
+            type="text"
+            onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
+              setInput(resp.target.value)
+            }
+          />
+          <button>Enviar</button>
+        </form>
+        <ButtonNav />
+      </Conteiner>
+    </motion.div>
   );
 }
 
