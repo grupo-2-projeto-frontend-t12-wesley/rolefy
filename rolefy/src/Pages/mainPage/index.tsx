@@ -105,22 +105,28 @@ function MainPage() {
     <Conteiner>
       <Slider>
         {places.map((resp, index) => (
-          <li className="keen-slider__slide " key={index}>
-            <h1>{resp.name}</h1>
-            <button onClick={() => navigate(`/chat/${resp.userId}`)}>Chat</button>
 
-            {/* <HeartFavorite resp={resp} /> */}
-
-            <div>
-              <button onClick={() => PatchRequest(resp)}>
-                <GrFavorite />{" "}
-              </button>
+          <li className="keen-slider__slide" key={index}>
+            <img
+              src={resp.image}
+              alt="foto do restaurante"
+              className="fotoDoRestaurante"
+            />
+            <div className="dadosDoRestaurante">
+              <h1 className="nomeDoRestaurante">{resp.name}</h1>
+              <button onClick={() => navigate(`/chat/${resp.id}`)}>Chat</button>
             </div>
           </li>
         ))}
       </Slider>
 
       <nav>
+
+        <button
+          onClick={() => navigate(`/message`)}
+          className="message"
+        ></button>
+
         <ButtonNav />
       </nav>
     </Conteiner>

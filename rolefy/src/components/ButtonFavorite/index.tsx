@@ -1,6 +1,3 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import ImageHeart from "../../assets/svgFiles/Group.svg";
 import { iPlaces, LoginContext } from "../../context/Login";
 import api from "../../services/api";
