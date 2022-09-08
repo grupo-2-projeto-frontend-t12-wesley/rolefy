@@ -6,7 +6,6 @@ import { Conteiner } from "./styled";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { LoginContext } from "../../context/Login";
 import ButtonNav from "../../components/ButtonNav";
-import { Header } from "../../components/BarraUser/BarUserStyle";
 
 export interface IMessage {
   message: string;
@@ -63,8 +62,6 @@ function Chat() {
         empriseId: empriseId.id,
         image: empriseData?.image,
         name: empriseData?.name,
-        userName: userInfo.name,
-        userImage: userInfo.image,
       };
 
       setDoc(doc(fireDataBase, "chats", `${userId}${empriseId.id}`), newUser);
