@@ -32,7 +32,10 @@ button{
     color: #34ebab;
 
 }
-
+.coloqueSeusDados{
+    color: red;
+    font-family: 'Dosis', sans-serif;
+}
 .formularioLogin{
     display: flex;
     justify-content: center;
