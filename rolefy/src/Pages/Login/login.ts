@@ -11,10 +11,6 @@ width: 100vw;
 height: 100vh;
 background-image: linear-gradient(180deg, #0A0202 0%, rgba(90, 31, 91, 0.697917) 50%, #000000 100%);
 
-button{
-    cursor: pointer;
-}
-
 .logotipo{
     width: 150px;
     display: flex;
@@ -44,22 +40,16 @@ button{
 .emailInput{
     width: 70vw;
     height: 32px;
-    max-width: 350px;
-    background-color: #FFFFFF;
+    background-color: transparent;
     border: none;
-    border-radius: 20px;
-    padding-left: 20px;
-    margin-top: 50px;
 }
 
 .senhaInput{
     width: 70vw;
-    max-width: 350px;
     height: 32px;
-    background-color: #FFFFFF;
+    background-color: transparent;
     border: none;
-    border-radius: 20px;
-    padding-left: 20px;
+   
 }
 
 .botaoLogin{
@@ -69,8 +59,7 @@ button{
     box-shadow: 0px 1px 12px  rgba(224, 58, 116);
     border: none;
     border-radius: 115px;
-    width: 60vw;
-    max-width: 350px;
+    width: 120px;
     height: 30px;
     text-align: center;
     align-items: center;
@@ -84,7 +73,7 @@ button{
     font-family: 'B612 Mono', monospace;
     color: #FFA6A6;
     font-size: 12px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     margin-top: 10px;
 }
 
@@ -95,74 +84,15 @@ button{
 }
 
 .menssagemDeCadastresse{
-    color: #FFA6A6;
+    color: #50E577;
     font-size: 14px;
     font-family: 'Prompt', sans-serif;
-    font-weight: 300;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    font-weight: 100;
 }
 
 .bordaInputs{
     border:none;
     border-bottom: 1px solid #FFFFFF;
     display: flex;
-}
-
-.registrese{
-    display: flex;
-    background-color: rgba(143, 35, 87, 0.4); 
-    border: 3px solid  rgba(224, 58, 116);
-    box-shadow: 0px 1px 12px  rgba(224, 58, 116);
-    border: none;
-    border-radius: 115px;
-    width: 60vw;
-    max-width: 350px;
-    height: 30px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Prompt', sans-serif;
-    font-size: 14px;
-    color: #FFFFFF;
-}
-
-@media (min-width: 768px){
-    .emailInput{
-    width: 70vw;
-    height: 32px;
-    background-color: #FFFFFF;
-    border: none;
-    border-radius: 20px;
-    padding-left: 20px;
-    margin-top: 50px;
-}
-
-.senhaInput{
-    width: 70vw;
-    height: 32px;
-    background-color: #FFFFFF;
-    border: none;
-    border-radius: 20px;
-    padding-left: 20px;
-}
-
-.menssagemDeCadastresse{
-    color: #FFA6A6;
-    font-size: 16px;
-    font-family: 'Prompt', sans-serif;
-    font-weight: 200;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-
-.menssagem{
-    font-family: 'B612 Mono', monospace;
-    color: #FFA6A6;
-    font-size: 18px;
-    margin-bottom: 50px;
-    margin-top: 10px;
-}
-
 }
 `

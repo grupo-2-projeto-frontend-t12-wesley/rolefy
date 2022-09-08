@@ -29,29 +29,29 @@ function Login() {
       <p className="menssagem">O match certo para seu rolê!</p>
       <form className="formularioLogin" onSubmit={handleSubmit(onSubmitLogin)}>
         <h2 className="tipoDeFormulario">Login</h2>
-        {/* <div className="bordaInputs"> */}
+        <div className="bordaInputs">
           <input
             type="text"
             placeholder="E-mail..."
             className="emailInput"
             {...register("email")}
           />
-        {/* </div> */}
+        </div>
         <span>{errors.email && errors.email.message}</span>
-        {/* <div className="bordaInputs"> */}
+        <div className="bordaInputs">
           <input
             type="password"
             placeholder="Senha..."
             className="senhaInput"
             {...register("password")}
           />
-        {/* </div> */}
+        </div>
 
         <span>{errors.password && errors.password.message}</span>
         <ButonLogin classname="botaoLogin" />
       </form>
       <p className="menssagemDeCadastresse">ainda não sabe onde achar seu role?</p>
-      <button onClick={() => navigate("/register")} className="registrese">Registre-se</button>
+      <button onClick={() => navigate("/register")}>Registre-se</button>
     </LoginStyle>
   );
 }

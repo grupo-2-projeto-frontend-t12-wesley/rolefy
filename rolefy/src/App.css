@@ -27,9 +27,7 @@ body {
     align-items: center; */
 }
 
-
-/* .App{
-
+.App {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,7 +66,4 @@ body {
   .botaoLogin {
     width: 20vw;
   }
-
-
-} */
-
+}
