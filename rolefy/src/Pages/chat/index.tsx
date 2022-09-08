@@ -2,13 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { fireDataBase } from "../../services/fireBase/ApiStart";
 import { Conteiner } from "./styled";
-
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { LoginContext } from "../../context/Login";
 import ButtonNav from "../../components/ButtonNav";
 import { Header } from "../../components/BarraUser/BarUserStyle";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-
 import { motion } from "framer-motion";
 
 
@@ -67,8 +65,6 @@ function Chat() {
         empriseId: empriseId.id,
         image: empriseData?.image,
         name: empriseData?.name,
-        userName: userInfo.name,
-        userImage: userInfo.image,
       };
 
       setDoc(doc(fireDataBase, "chats", `${userId}${empriseId.id}`), newUser);
