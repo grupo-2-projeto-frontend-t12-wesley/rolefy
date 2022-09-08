@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import api from "../../services/api";
 import { GrFavorite } from "react-icons/gr";
 import { BsFillChatRightFill } from "react-icons/bs";
+import { motion } from "framer-motion";
+
 
 interface IPlaceInfo {
   name: string;
@@ -45,12 +47,15 @@ function MainPage() {
   }
 
   return (
-    <Conteiner>
-      <Slider>
-        {places.map((resp, index) => {
-          console.log(resp);
-
-          return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.5 }}
+    >
+      <Conteiner>
+        <Slider>
+          {places.map((resp, index) => (
             <li className="keen-slider__slide " key={index}>
               <img src={resp.image} alt="" className="fotoDoRestaurante" />
               <div className="dadosDoRestaurante">
@@ -74,13 +79,13 @@ function MainPage() {
                 </button>
               </div>
             </li>
-          );
-        })}
-      </Slider>
-      <nav>
-        <ButtonNav />
-      </nav>
-    </Conteiner>
+          ))}
+        </Slider>
+        <nav>
+          <ButtonNav />
+        </nav>
+      </Conteiner>
+    </motion.div>
   );
 }
 
