@@ -6,6 +6,7 @@ import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { IMessage } from "../chat";
 import ButtonNav from "../../components/ButtonNav";
 import { motion } from "framer-motion";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function ChatCompany() {
   const clientId = useParams();
@@ -39,7 +40,7 @@ function ChatCompany() {
       message: input,
       userId: userId,
     };
-
+      
     setDoc(
       doc(fireDataBase, "chats", `${clientId.id}${userId}`),
       {
@@ -58,7 +59,9 @@ function ChatCompany() {
       transition={{ duration: 2 }}
     >
       <Conteiner>
-        <button onClick={() => navigate("/message")}>Voltar</button>
+      <button onClick={() => navigate("/message")} className="return">
+        <AiOutlineArrowLeft />
+      </button>
         <div className="chat">
           {data?.map((resp: IMessage, index) => {
             if (resp.userId == userId) {

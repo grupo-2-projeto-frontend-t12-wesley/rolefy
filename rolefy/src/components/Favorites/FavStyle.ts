@@ -21,11 +21,13 @@ export const CardPlaces = styled.li`
     background-color: #FFFBFB;
     border-radius: 0.421rem;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     color: black;
 
     img{
-        width: 50px;
+      
+        width: 90%;
+        height: 10vh;
     }
 
 `;

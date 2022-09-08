@@ -77,6 +77,7 @@ function Chat() {
         { merge: true }
       );
     }
+    setInput('')
   }
   const navigate = useNavigate();
 
@@ -123,7 +124,8 @@ function Chat() {
             type="text"
             onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
               setInput(resp.target.value)
-            }
+            } 
+            value={input}
           />
           <button>Enviar</button>
         </form>
