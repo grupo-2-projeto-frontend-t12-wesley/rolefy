@@ -40,7 +40,7 @@ function ChatCompany() {
       message: input,
       userId: userId,
     };
-
+    
     setDoc(
       doc(fireDataBase, "chats", `${clientId.id}${userId}`),
       {
