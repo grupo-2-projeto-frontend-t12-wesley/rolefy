@@ -8,6 +8,7 @@ import HeartFavorite from "../../components/ButtonFavorite";
 import toast from "react-hot-toast";
 import api from "../../services/api";
 import { GrFavorite } from "react-icons/gr";
+import { motion } from "framer-motion";
 
 interface IPlaceInfo {
   name: string;
@@ -44,30 +45,37 @@ function MainPage() {
   }
 
   return (
-    <Conteiner>
-      <Slider>
-        {places.map((resp, index) => (
-          <li className="keen-slider__slide " key={index}>
-            <img src={resp.image} alt="" className="fotoDoRestaurante" />
-            <div className="dadosDoRestaurante">
-              <h1 className="nomeDoRestaurante">{resp.name}</h1>
-              <button onClick={() => navigate(`/chat/${resp.userId}`)}>
-                Chat
-              </button>
-            </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.5 }}
+    >
+      <Conteiner>
+        <Slider>
+          {places.map((resp, index) => (
+            <li className="keen-slider__slide " key={index}>
+              <img src={resp.image} alt="" className="fotoDoRestaurante" />
+              <div className="dadosDoRestaurante">
+                <h1 className="nomeDoRestaurante">{resp.name}</h1>
+                <button onClick={() => navigate(`/chat/${resp.userId}`)}>
+                  Chat
+                </button>
+              </div>
 
-            <div>
-              <button onClick={() => PatchRequest(resp)}>
-                <GrFavorite className="adcFav"/>
-              </button>
-            </div>
-          </li>
-        ))}
-      </Slider>
-      <nav>
-        <ButtonNav />
-      </nav>
-    </Conteiner>
+              <div>
+                <button onClick={() => PatchRequest(resp)}>
+                  <GrFavorite className="adcFav" />
+                </button>
+              </div>
+            </li>
+          ))}
+        </Slider>
+        <nav>
+          <ButtonNav />
+        </nav>
+      </Conteiner>
+    </motion.div>
   );
 }
 

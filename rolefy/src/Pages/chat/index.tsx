@@ -7,6 +7,7 @@ import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { LoginContext } from "../../context/Login";
 import ButtonNav from "../../components/ButtonNav";
 import { Header } from "../../components/BarraUser/BarUserStyle";
+import { motion } from "framer-motion";
 
 export interface IMessage {
   message: string;
@@ -80,46 +81,53 @@ function Chat() {
   }
 
   return (
-    <Conteiner>
-      {/* Falar com thiago sobre o <Header/> */}
-      <button onClick={() => history.back()}>Voltar</button>
-      <div className="chat">
-        {data?.map((resp: IMessage, index) => {
-          if (resp.userId == userId) {
-            return (
-              <div
-                className="
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
+      <Conteiner>
+        {/* Falar com thiago sobre o <Header/> */}
+        <button onClick={() => history.back()}>Voltar</button>
+        <div className="chat">
+          {data?.map((resp: IMessage, index) => {
+            if (resp.userId == userId) {
+              return (
+                <div
+                  className="
                 Message ownMessage"
-                key={index}
-              >
-                <p>{resp.message}</p>
-              </div>
-            );
-          } else {
-            return (
-              <div
-                className="
+                  key={index}
+                >
+                  <p>{resp.message}</p>
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  className="
                 Message anotherUser"
-                key={index}
-              >
-                <p>{resp.message}</p>
-              </div>
-            );
-          }
-        })}
-      </div>
+                  key={index}
+                >
+                  <p>{resp.message}</p>
+                </div>
+              );
+            }
+          })}
+        </div>
 
-      <form onSubmit={(e) => formSubmit(e)}>
-        <input
-          type="text"
-          onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
-            setInput(resp.target.value)
-          }
-        />
-        <button>Enviar</button>
-      </form>
-      <ButtonNav />
-    </Conteiner>
+        <form onSubmit={(e) => formSubmit(e)}>
+          <input
+            type="text"
+            onChange={(resp: React.ChangeEvent<HTMLInputElement>) =>
+              setInput(resp.target.value)
+            }
+          />
+          <button>Enviar</button>
+        </form>
+        <ButtonNav />
+      </Conteiner>
+    </motion.div>
   );
 }
 

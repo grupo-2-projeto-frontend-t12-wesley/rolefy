@@ -6,7 +6,7 @@ export const Conteiner = styled.div`
   .Message {
     display: flex;
     background-color: aqua;
-   
+
     p {
       max-width: 50vw;
       padding: 0.8rem;
@@ -24,7 +24,6 @@ export const Conteiner = styled.div`
     align-items: flex-end;
     p {
       border-radius: 1rem 1rem 0rem 1rem;
-      direction: rtl;
     }
   }
 
